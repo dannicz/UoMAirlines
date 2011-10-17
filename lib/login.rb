@@ -2,6 +2,7 @@
 
 class LogIn
 
+
     def check_credentials username, password
 
      csv = CSVReader.new()

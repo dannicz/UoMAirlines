@@ -5,19 +5,19 @@ require "../lib/registration"
 describe UsersLogin do
 
   it "should check for password validation" do
-    subject=UsersLogin.new 'sumayh', 'aljameel', 'address', 'email', '12345678'
-    subject.password.length.should>=8
+    subject=Customer.new
+    subject.pass_word '12345678'
 
   end
 
   it "should register a user to the database" do
-
-    customer = UsersLogin.new 'sumayh', 'aljameel', 'address', 'email'  , '12345678'
+    customer = Customer.new
 
     registration = Registration.new
     result = registration.add_customer customer
 
     result == true
   end
+
 
 end
