@@ -1,14 +1,18 @@
 
 
 class Customer
-       attr_accessor  :f_name, :l_name, :address, :email, :password
+       attr_accessor  :us_FirstName,:us_SurName, :us_Password, :us_Email, :us_Address, :us_Type
+      def initialize
 
-      def initialize(f_name, l_name, address, email, password)
-          @f_name=f_name
-          @l_name=l_name
-          @address=address
-          @email=email
-          @password=pass_word(password)
+      end
+
+      def initialize(us_FirstName, us_SurName,us_Password, us_Email, us_Address ,us_Type )
+          @us_FirstName=us_FirstName
+          @us_SurName=us_SurName
+          @us_Address=us_Address
+          @us_Email=us_Email
+          @us_Password=pass_word(us_Password)
+          @us_Type=us_Type
       end
 
      def pass_word password
