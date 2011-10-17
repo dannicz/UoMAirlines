@@ -1,9 +1,15 @@
 
 
+
  class Registration
 
-   def password
-     'sofi33333'
-   end
+     def initialize
+         @customers=[]
+     end
+
+     def add_customer(another_customer)
+         @customers.push(another_customer)
+     end
 
  end
+
