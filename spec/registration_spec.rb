@@ -1,8 +1,8 @@
 require "rspec"
-require "../lib/customer"
+require "../lib/usersLogin"
 require "../lib/registration"
 
-describe Customer do
+describe UsersLogin do
 
   it "should check for password validation" do
     subject=Customer.new
@@ -11,7 +11,6 @@ describe Customer do
   end
 
   it "should register a user to the database" do
-
     customer = Customer.new
 
     registration = Registration.new
