@@ -1,5 +1,5 @@
 require "rspec"
-require "../lib/usersLogin"
+require "../lib/user"
 require "../lib/registration"
 
 describe UsersLogin do

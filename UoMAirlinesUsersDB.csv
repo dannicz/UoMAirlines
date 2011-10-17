@@ -1,3 +1,4 @@
 us_FirstName,us_SurName,us_Password,us_Email,us_Address,us_Type
 aaa,bbb,123,a@b.com,1 Alpha Street,admin
 ccc,ddd,456,c@d.com,2 Beta Street,client
+daniel,cuevas,Straford,daniel@manchester,12345678,customer

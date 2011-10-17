@@ -2,11 +2,7 @@ require "rspec"
 require "../lib/csv_reader"
 require "../lib/user_writer"
 
-
-describe "UserWriter" do
-   let(:user) {mock('User')}
-
-
+describe "User writer" do
 begin
 it "should append an user to the CSV" do
 
@@ -15,6 +11,7 @@ it "should append an user to the CSV" do
   customers_size= customers.size
 
   user_writer = UserWriter.new()
+  user = User.new "daniel","cuevas","Straford","daniel@manchester","12345678","customer"
   user_writer = user_writer.append_user user
 
   customers = csv_reader.all_customers
