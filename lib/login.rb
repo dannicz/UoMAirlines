@@ -8,19 +8,20 @@ class LogIn
      csv = CSVReader.new()
      cust_arr = csv.all_customers
          customer_details = nil
+      success = 0
      cust_arr.each do |customer|
-    login = 0
+
        if(customer.email == username )
          if(customer.password == password)
            puts "login successful"
-           login = 1
+           success = 1
            customer_details = customer
            break
          end
        end
      end
 
-     if(login == 0)
+     if(success == 0)
        puts "login failed"
        return nil
      end
