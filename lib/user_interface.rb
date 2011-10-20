@@ -28,6 +28,7 @@ def register
       password
       puts 'Enter your Email Address'
       email=STDIN.gets.chomp
+      @@user_name = email
       puts 'Enter your Address'
       address=STDIN.gets.chomp
       pass = save_record f_name, s_name, password, email, address

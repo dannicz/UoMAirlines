@@ -12,6 +12,8 @@ FasterCSV.open("../UoMAirlinesUsersDB.csv", "a") do |csv|
   csv << ["ccc", "ddd", "456", "c@d.com","2 Beta Street", "client"]
 end
 
+
+
 FasterCSV.foreach("../UoMAirlinesUsersDB.csv", :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |row|
    puts row[0]
 end
