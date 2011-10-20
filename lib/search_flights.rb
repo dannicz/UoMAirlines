@@ -46,7 +46,8 @@ class SearchFlights
             flight = selectDesiredFlight foundFlights
         end
 
-        Payment.payment_gateway flight
+        payment = Payment.new
+        payment.payment_gateway flight
 
       else
         puts "#{destination} Not found..."
@@ -103,7 +104,7 @@ class SearchFlights
   end
 
   def prompt
-    print "Search again? (y or n) "
+    print "Would you like to search again? (y or n) "
     answer = gets.chomp.downcase
 
     case answer

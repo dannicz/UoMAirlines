@@ -10,7 +10,8 @@ class LogIn
          customer_details = nil
       success = 0
      cust_arr.each do |customer|
-
+           puts customer.email
+           puts customer.password
            if(customer.email == username )
              if(customer.password == password)
                puts "login successful"

@@ -1,9 +1,15 @@
 require "../lib/login"
 require "../lib/registration"
 require "../lib/user"
+require "../lib/search_flights"
 
 
 class UserInterface
+
+
+  def self.user_name
+    @@user_name
+  end
 
 
 def login
@@ -17,7 +23,9 @@ def login
           else
            puts 'Please type your credentials again'
           end
-        end
+           end
+
+    @@user_name = user.email
 end
 
 def register
@@ -49,7 +57,11 @@ def menu
              register
  end
 
+      searcher = SearchFlights.new
+      searcher.search_for_flights
 end
+
+
 
 def prompt
   puts 'Please Enter your Email Address'

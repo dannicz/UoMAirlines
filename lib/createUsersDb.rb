@@ -8,8 +8,8 @@ unless File.exists?("../UoMAirlinesUsersDB.csv")
 end
 
 FasterCSV.open("../UoMAirlinesUsersDB.csv", "a") do |csv|
-  csv << ["aaa", "bbb", "123", "a@b.com","1 Alpha Street", "admin"]
-  csv << ["ccc", "ddd", "456", "c@d.com","2 Beta Street", "client"]
+  csv << ["aaa", "bbb", "12345678", "a@b.com","1 Alpha Street", "admin"]
+  csv << ["ccc", "ddd", "456789456", "c@d.com","2 Beta Street", "client"]
 end
 
 
