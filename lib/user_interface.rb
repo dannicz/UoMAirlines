@@ -2,51 +2,56 @@ require "../lib/login"
 require "../lib/registration"
 require "../lib/user"
 
- class UserInterface
 
-def  menu
+class UserInterface
 
-puts 'Welcome to UoM Airline'
-puts 'please choose (1) to Log In or (2) to Register '
 
- key=STDIN.gets.chomp
+def login
+    user = nil
 
- case key
-   when '1'
-      user = nil
+           while user == nil
 
-     while user == nil
+           user = prompt
+           if user != nil
+               puts 'Welcome '+user.f_name
+          else
+           puts 'Please type your credentials again'
+          end
+        end
+end
 
-      user = prompt
-       if user != nil
-           puts 'Welcome '+user.f_name
-      else
-       puts 'Please type your credentials again'
-      end
-      @@user_details = user
-    end
-
-   when '2'
+def register
       puts 'Enter your First name'
       f_name=STDIN.gets.chomp
       puts 'Enter your Sur name'
       s_name=STDIN.gets.chomp
-      puts 'Enter your PassWord'
-      password=STDIN.gets.chomp
+      password
       puts 'Enter your Email Address'
       email=STDIN.gets.chomp
       puts 'Enter your Address'
       address=STDIN.gets.chomp
-    user=User.new(f_name,s_name,password,email,address,"client")
-      reg = Registration.new
-      reg.add_customer user
-      puts 'Customer registered'
+      pass = save_record f_name, s_name, password, email, address
+      if(pass == false)
+             password
+      end
+end
 
-   else
-     puts 'invalid entry, try again...'
+def password
+  puts 'Enter your PassWord'
+      password=STDIN.gets.chomp
+end
 
+def menu
+
+ key=STDIN.gets.chomp
+ case key
+       when '1'
+             login
+       when '2'
+             register
  end
- end
+
+end
 
 def prompt
   puts 'Please Enter your Email Address'
@@ -61,4 +66,28 @@ def prompt
   return user
 end
 
- end
+def save_record   f_name, s_name, password, email, address
+       if password.length >= 8   and email.include? "@" and email.include? "."
+
+           user=User.new(f_name,s_name,password,email,address,"client")
+           reg = Registration.new
+           reg.add_customer user
+           puts 'Customer registered'
+         return true
+        else
+          puts 'Please select a valid password'
+         return false
+        end
+  end
+
+def welcome
+  puts 'Welcome to UoM Airlines'
+  puts 'please choose (1) to Log In or (2) to Register '
+end
+
+end
+
+ui = UserInterface.new
+ui.welcome
+ui.menu
+
