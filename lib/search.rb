@@ -3,11 +3,13 @@ require 'faster_csv'
 
 def load_database(path_to_csv)
   @emails = []
-  FasterCSV.foreach(path_to_csv, :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |row|
-    @emails << row[3] #change here to get the wanted value#
+  #@data = []
+  FasterCSV.foreach(path_to_csv, :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |column|
+    @emails << column[3] #change here to get the wanted value#
+    #@data << [column[0],column[1],column[2],column[3],column[4],column[5]]
   end
   @emails.each { |n| n.downcase! }
-  puts @emails
+
 end
 
 def search_for_email
@@ -21,6 +23,7 @@ def search_for_email
     puts "#{email} Not found..."
   end
   prompt
+
 end
 
 def prompt

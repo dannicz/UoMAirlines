@@ -8,9 +8,9 @@ unless File.exists?("../UoMAirlinesFlightsDB.csv")
 end
 
 FasterCSV.open("../UoMAirlinesFlightsDB.csv", "a") do |csv|
-  csv << ["1","Manchester","Dubai","12:00","18:00","350"]
+  csv << ["2","Manchester","New York","12:00","19:00","850"]
 end
 
-FasterCSV.foreach("../UoMAirlinesFlightsDB.csv", :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |row|
-   puts row[0]
+FasterCSV.foreach("../UoMAirlinesFlightsDB.csv", :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |column|
+   puts column[0]
 end

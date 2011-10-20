@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'faster_csv'
 require '../lib/user'
+require '../lib/flight'
 
 class CSVReader
 
@@ -36,7 +37,7 @@ def all_admins
   admins
 end
 
-=begin
+begin
 def all_flights
 
   flights = []
@@ -44,13 +45,14 @@ def all_flights
 
   FasterCSV.foreach("../UoMAirlinesFlightsDB.csv", :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |row|
 
-    put row
-    flight = new Flight
+    flight = Flight.new row[0], row[1], row[2], row[3], row[4], row[5]
     flights.push flight
 
  end
 
+  return flights
+
 end
-=end
+end
 
 end
