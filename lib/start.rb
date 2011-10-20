@@ -11,12 +11,12 @@ require "../lib/user"
  case key
    when '1'
       puts 'Please Enter your Email Address'
-    email=STDIN.gets.chomp
+     email=STDIN.gets.chomp
      puts 'Please Enter your PassWord'
-    passWord=STDIN.gets.chomp
+     passWord=STDIN.gets.chomp
 
 
-    login = LogIn.new()
+     login = LogIn.new()
      user = login.check_credentials(email,passWord)
 
      if user != nil
@@ -35,13 +35,17 @@ require "../lib/user"
       email=STDIN.gets.chomp
       puts 'Enter your Address'
       address=STDIN.gets.chomp
-    user=User.new(f_name,s_name,password,email,address,"client")
-      reg = Registration.new
-      reg.add_customer user
-      puts 'Customer registered'
 
-   else
-     puts 'invalid entry, try again...'
 
+      if password.length >= 8   and email.include? "@" and email.include? "."
+
+           user=User.new(f_name,s_name,password,email,address,"client")
+           reg = Registration.new
+           reg.add_customer user
+           puts 'Customer registered'
+
+      else
+          puts 'invalid entry, try again...'
+      end
  end
 

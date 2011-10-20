@@ -9,17 +9,7 @@ class User
           @address=address
           @email=email
           @type= type
-          @password=pass_word(password)
-      end
-
-     def pass_word password
-
-        if password.length < 8
-             return 'the password should be more than 8 characters'
-        else
           @password=password
-        end
-     end
-
+      end
 
  end
