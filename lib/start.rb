@@ -36,16 +36,18 @@ require "../lib/user"
       puts 'Enter your Address'
       address=STDIN.gets.chomp
 
+      save_record f_name, s_name, password, email, address
 
-      if password.length >= 8   and email.include? "@" and email.include? "."
+ end
+
+    def save_record   f_name, s_name, password, email, address
+       if password.length >= 8   and email.include? "@" and email.include? "."
 
            user=User.new(f_name,s_name,password,email,address,"client")
            reg = Registration.new
            reg.add_customer user
            puts 'Customer registered'
-
-      else
+        else
           puts 'invalid entry, try again...'
       end
- end
-
+    end
