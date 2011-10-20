@@ -25,21 +25,18 @@ def register
       f_name=STDIN.gets.chomp
       puts 'Enter your Sur name'
       s_name=STDIN.gets.chomp
-      password
+      puts 'Enter your PassWord'
+      password=STDIN.gets.chomp
       puts 'Enter your Email Address'
       email=STDIN.gets.chomp
       puts 'Enter your Address'
       address=STDIN.gets.chomp
       pass = save_record f_name, s_name, password, email, address
       if(pass == false)
-             password
+             register
       end
 end
 
-def password
-  puts 'Enter your PassWord'
-      password=STDIN.gets.chomp
-end
 
 def menu
 
@@ -75,7 +72,7 @@ def save_record   f_name, s_name, password, email, address
            puts 'Customer registered'
          return true
         else
-          puts 'Please select a valid password'
+          puts 'Please select a valid password or email'
          return false
         end
   end
