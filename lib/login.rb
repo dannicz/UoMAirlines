@@ -11,21 +11,21 @@ class LogIn
       success = 0
      cust_arr.each do |customer|
 
-       if(customer.email == username )
-         if(customer.password == password)
-           puts "login successful"
-           success = 1
-           customer_details = customer
-           break
-         end
+           if(customer.email == username )
+             if(customer.password == password)
+               puts "login successful"
+               success = 1
+               customer_details = customer
+               break
+             end
+           end
+      end
+       if(success == 0)
+         puts "login failed"
+         return nil
+       else
+        return customer_details
        end
-     end
+   end
 
-     if(success == 0)
-       puts "login failed"
-       return nil
-     end
-    else
-     return customer_details
-    end
 end
