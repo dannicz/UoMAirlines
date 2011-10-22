@@ -25,26 +25,56 @@ def login
           end
            end
 
-    @@user_name = user.email
+          @@user_name = user.email
 end
 
-def register
+  def enter_email
+
+    email = nil
+    error = false
+
+    puts 'Enter your Email Address'
+     while !validate_email email
+       if error
+           puts 'Please enter a valid email'
+         end
+        email=STDIN.gets.chomp
+        error = true
+     end
+
+    @@user_name = email
+
+    email
+
+  end
+
+  def enter_password
+     password = nil
+    error = false
+
+     puts 'Enter your PassWord'
+     while !validate_password password
+        if error
+           puts 'Please enter a valid PassWord'
+         end
+        password=STDIN.gets.chomp
+       error=true
+     end
+
+    password
+  end
+
+  def register
       puts 'Enter your First name'
       f_name=STDIN.gets.chomp
       puts 'Enter your Sur name'
       s_name=STDIN.gets.chomp
-      puts 'Enter your PassWord'
-      password=STDIN.gets.chomp
-      puts 'Enter your Email Address'
-      email=STDIN.gets.chomp
-      @@user_name = email
+      email = enter_email()
+      password = enter_password()
       puts 'Enter your Address'
       address=STDIN.gets.chomp
-      pass = save_record f_name, s_name, password, email, address
-      if(pass == false)
-             register
-      end
-end
+      save_record f_name, s_name, password, email, address
+  end
 
 
 def menu
@@ -56,7 +86,9 @@ def menu
        when '2'
              register
  end
-
+      puts
+      puts "Please enter the details of the flight"
+      puts
       searcher = SearchFlights.new
       searcher.search_for_flights
 end
@@ -76,28 +108,43 @@ def prompt
   return user
 end
 
-def save_record   f_name, s_name, password, email, address
-       if password.length >= 8   and email.include? "@" and email.include? "."
-
-           user=User.new(f_name,s_name,password,email,address,"client")
-           reg = Registration.new
-           reg.add_customer user
-           puts 'Customer registered'
-         return true
+  def validate_email(email)
+    if email!= nil and email.include? "@" and email.include? "."
+       return true
         else
-          puts 'Please select a valid password or email'
-         return false
-        end
+        return false
+    end
+  end
+
+  def validate_password password
+    if password!= nil and password.length >= 8
+      return true
+      else
+
+        return false
+    end
+  end
+
+  def save_record   f_name, s_name, password, email, address
+
+       user=User.new(f_name,s_name,password,email,address,"client")
+       reg = Registration.new
+       reg.add_customer user
+       puts 'Customer registered'
   end
 
 def welcome
   puts 'Welcome to UoM Airlines'
   puts 'please choose (1) to Log In or (2) to Register '
 end
+  def execute_user_interface
+  ui = UserInterface.new
+  ui.welcome
+  ui.menu
+  end
 
 end
 
-ui = UserInterface.new
-ui.welcome
-ui.menu
+
+
 

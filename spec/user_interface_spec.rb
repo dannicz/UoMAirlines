@@ -1,19 +1,25 @@
 require "rspec"
+require "../lib/user_interface"
 
 
 
-describe "My behaviour" do
+describe "User interface" do
 
   it "should check for password validation" do
-    subject=Customer.new
-    subject.pass_word '12345678'
+    ui = UserInterface.new
+    password = '12345678'
+
+    ui.validate_password password
 
   end
 
 
-  it "should do something" do
+  it "should check for email validation" do
+    ui = UserInterface.new
+    email = 'abc@hot.com'
 
-    #To change this template use File | Settings | File Templates.
-    true.should == false
+    ui.validate_email email
+
   end
+
 end
