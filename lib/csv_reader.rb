@@ -55,4 +55,21 @@ def all_flights
 end
 end
 
+
+
+def all_users
+    customers = []
+    customer = nil
+
+    FasterCSV.foreach("../UoMAirlinesUsersDB.csv", :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |row|
+
+        customer = User.new row[0], row[1], row[2], row[3], row[4], row[5]
+        customers.push customer
+      end
+
+
+    customers
+     end
+
+
 end

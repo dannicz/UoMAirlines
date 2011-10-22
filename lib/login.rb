@@ -6,12 +6,10 @@ class LogIn
     def check_credentials username, password
 
      csv = CSVReader.new()
-     cust_arr = csv.all_customers
+     cust_arr = csv.all_users
          customer_details = nil
       success = 0
      cust_arr.each do |customer|
-           puts customer.email
-           puts customer.password
            if(customer.email == username )
              if(customer.password == password)
                puts "login successful"
