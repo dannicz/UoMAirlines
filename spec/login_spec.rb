@@ -3,23 +3,37 @@ require "../lib/login"
 
 describe "My behaviour" do
 
-  it "should not be a successful login" do
+  it "Login should fail with incorrect credentials" do
     login = LogIn.new
-    username = "wronguser"
-    pass = "wrongpass"
+    username = "c@d.com"
+    pass = "456789456999999"
     user = login.check_credentials username,pass
-
     user.should == nil
   end
 
+  it "Username cannot be empty" do
+    login = LogIn.new
+    username = ""
+    pass = "456789456999999"
+    user = login.check_credentials username,pass
+    user.should == nil
+  end
+
+  it "Password cannot be empty" do
+    login = LogIn.new
+    username = "c@d.com"
+    pass = ""
+    user = login.check_credentials username,pass
+    user.should == nil
+  end
 
   it "should be a successful login" do
     login = LogIn.new
-    username = "aaa"
-    pass = "bbb"
+    username = "c@d.com"
+    pass = "456789456"
     user = login.check_credentials username,pass
-
-    user.should != nil
+    user.should_not == nil
   end
+
 
 end

@@ -2,22 +2,15 @@ require "rspec"
 require "../lib/user"
 require "../lib/registration"
 
-describe UsersLogin do
 
-  it "should check for password validation" do
-    subject=Customer.new
-    subject.pass_word '12345678'
+describe Registration do
 
-  end
 
   it "should register a user to the database" do
-    customer = Customer.new
-
+    user = User.new "","","","","",""
     registration = Registration.new
-    result = registration.add_customer customer
-
+    result = registration.add_customer user
     result == true
   end
-
 
 end

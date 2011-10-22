@@ -1,3 +1,6 @@
+require 'faster_csv'
+
+
 class UserWriter
 
   def append_user user

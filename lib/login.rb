@@ -9,6 +9,18 @@ class LogIn
      cust_arr = csv.all_users
          customer_details = nil
       success = 0
+
+     if(username == nil)
+       puts "username cannot be empty"
+       success = 0
+       return nil
+     end
+     if(password == nil)
+       puts "password cannot be empty"
+       success = 0
+       return nil
+     end
+
      cust_arr.each do |customer|
            if(customer.email == username )
              if(customer.password == password)
