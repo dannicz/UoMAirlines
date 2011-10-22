@@ -18,13 +18,11 @@ describe "CSV Reader" do
     adminUsers.size.should >= 0
   end
 
-  #it "should get all the flights from the CSV" do
-  #  csv_reader = CSVReader.new()
-   # flights = csv_reader.all_flights
-   # flights.size.should != 0
- # end
-
-
+  it "should get all the flights from the CSV" do
+    csv_reader = CSVReader.new()
+    flights = csv_reader.all_flights
+    flights.size.should >= 0
+  end
 
 end
 
