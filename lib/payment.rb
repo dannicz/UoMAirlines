@@ -1,3 +1,5 @@
+require '../lib/ticket_manager'
+
 class Payment
   attr_accessor :credit_card_no,:amount
 
@@ -36,6 +38,7 @@ def is_number?(i)
 end
 
 
+
   def validate_payment_amount  flight
          if (is_number?(@amount) && @amount == flight.fl_price)
                valid = 1
@@ -46,8 +49,10 @@ end
   end
 
   def write_payment_details flight
+      ticket_management = TicketManager.new
+      ticket_number = ticket_management.create_ticket_number
       FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "a") do |csv|
-      csv << [UserInterface.user_name,flight.fl_id,flight.fl_departure,flight.fl_destination,@amount]
+      csv << [ticket_number,UserInterface.user_name,flight.fl_id,flight.fl_departure,flight.fl_destination,@amount]
       end
       puts ''
       puts '                        Payment Successful !!!'

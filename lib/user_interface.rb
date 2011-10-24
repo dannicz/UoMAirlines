@@ -87,6 +87,7 @@ end
       address = gets.chomp
 
       save_record f_name, s_name, password, email, address
+
       puts "user-name is "+@@user_name
 
       key = STDIN.gets.chomp
