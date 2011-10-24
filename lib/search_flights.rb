@@ -104,7 +104,7 @@ class SearchFlights
   end
 
   def prompt
-    print "Would you like to search again? (y or n) "
+    print "Would you like to search for another flight? (y or n) "
     answer = gets.chomp.downcase
 
     case answer

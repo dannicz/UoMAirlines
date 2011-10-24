@@ -2,6 +2,7 @@ require 'rubygems'
 require 'faster_csv'
 require '../lib/user'
 require '../lib/flight'
+require '../lib/ticket'
 
 class CSVReader
 
@@ -69,7 +70,25 @@ def all_users
 
 
     customers
-     end
+end
+
+
+
+def all_tickets
+
+  flights = []
+  flight = nil
+
+  FasterCSV.foreach("../UoMAirlinesFlightsDB.csv", :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |row|
+
+    flight = Ticket.new row[0], row[1], row[2], row[3], row[4], row[5]
+    flights.push flight
+
+ end
+
+  return flights
+
+end
 
 
 end

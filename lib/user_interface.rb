@@ -74,6 +74,7 @@ end
       puts 'Enter your Address'
       address=STDIN.gets.chomp
       save_record f_name, s_name, password, email, address
+     puts 'Welcome '+f_name+' you are now logged in'
   end
 
 

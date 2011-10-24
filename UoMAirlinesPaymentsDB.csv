@@ -1,6 +1,6 @@
-us_Email,fl_Id,fl_Departure,fl_Destination,payment
-rahul@gmail.com,101,Manchester,Dubai,350
-r@g.c,1,Manchester,Dubai,350
-r@g.c,1,Manchester,Dubai,350
-c@d.com,1,Manchester,Dubai,350
-c@d.com,2,Manchester,New York,850
+ticket_number,us_Email,fl_Id,fl_Departure,fl_Destination,payment
+1,rahul@gmail.com,101,Manchester,Dubai,350
+2,r@g.c,1,Manchester,Dubai,350
+3,r@g.c,1,Manchester,Dubai,350
+4,c@d.com,1,Manchester,Dubai,350
+5,c@d.com,2,Manchester,New York,850
