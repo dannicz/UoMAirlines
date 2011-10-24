@@ -1,10 +1,12 @@
+require '../lib/ticket_manager'
+
 class Payment
   attr_accessor :credit_card_no,:amount
 
   def credit_card_details
 
-     puts 'Enter your Credit Card Number'
-      @credit_card_no =  STDIN.gets.chomp
+     puts 'Enter your Credit Card Number : '
+      @credit_card_no =  gets.chomp
      valid = validate_credit_card
      if(valid == 0)
       puts 'Invalid Credit Card Number'
@@ -15,7 +17,7 @@ class Payment
 
   def payment_amount flight
       puts 'Enter your Payment amount'
-       @amount=STDIN.gets.chomp
+       @amount = gets.chomp
       valid =  validate_payment_amount flight
       if(valid == 0)
         puts 'Invalid Amount Entered'
@@ -36,6 +38,7 @@ def is_number?(i)
 end
 
 
+
   def validate_payment_amount  flight
          if (is_number?(@amount) && @amount == flight.fl_price)
                valid = 1
@@ -46,13 +49,25 @@ end
   end
 
   def write_payment_details flight
+      ticket_management = TicketManager.new
+      ticket_number = ticket_management.create_ticket_number
       FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "a") do |csv|
-      csv << [UserInterface.user_name,flight.fl_id,flight.fl_departure,flight.fl_destination,@amount]
+      csv << [ticket_number,UserInterface.user_name,flight.fl_id,flight.fl_departure,flight.fl_destination,@amount]
       end
-    puts "Congratulations! Your ticket has been booked from "+flight.fl_departure+" to "+flight.fl_destination
-end
+      puts ''
+      puts '                        Payment Successful !!!'
+      puts "Congratulations! Your ticket has been booked from "+flight.fl_departure+" to "+flight.fl_destination
+      puts ''
+  end
 
   def payment_gateway flight
+    puts ''
+    puts '------------- Redirecting to Payment gateway ------------'
+    puts ''
+    puts 'Press any key to continue ... '
+    key = STDIN.gets.chomp
+    puts ''
+    puts ''
     credit_card_details
     payment_amount flight
     write_payment_details flight

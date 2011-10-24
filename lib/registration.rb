@@ -7,6 +7,5 @@ require "../lib/user_writer"
      user_writer = UserWriter.new
      user_writer.append_user another_customer
      end
-
  end
 
