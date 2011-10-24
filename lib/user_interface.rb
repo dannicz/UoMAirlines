@@ -3,6 +3,7 @@ require "../lib/registration"
 require "../lib/user"
 require "../lib/search_flights"
 require "../lib/search_email"
+require "../lib/ticket_manager"
 
 class UserInterface
 
@@ -120,10 +121,17 @@ end
        when '3'
              search
        when '4'
-             #print_ticket
+            print_ticket
        when '5'
              logout
     end
+
+  end
+
+  def print_ticket
+
+    manager= TicketManager.new
+    manager.print_ticket_prompt
 
   end
 
