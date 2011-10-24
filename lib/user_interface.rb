@@ -123,13 +123,30 @@ end
        when '4'
             print_ticket
        when '5'
-          #print_my_tickets
+            print_my_tickets
        when '6'
              logout
        else
         puts 'Invalid option. Please select again'
         menu
     end
+
+  end
+
+  def print_my_tickets
+      if(@@user_name != nil)
+        manager= TicketManager.new
+        manager.print_tickets_from_user @@user_name
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+      else
+        puts 'We are sorry! You need to login/Register to see your tickets'
+        puts ''
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+      end
 
   end
 
@@ -225,7 +242,8 @@ end
   puts '| [2] Login                                     |'
   puts '| [3] Search for flights                        |'
   puts '| [4] Print ticket details                      |'
-  puts '| [5] Logout                                    |'
+  puts '| [5] Print my tickets                          |'
+  puts '| [6] Logout                                    |'
   puts '|                                               |'
   puts ' ==============================================='
   puts ' Enter your Option: '
