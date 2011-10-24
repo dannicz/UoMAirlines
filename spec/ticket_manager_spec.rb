@@ -30,20 +30,24 @@ describe "Ticket Manager" do
   it "should get all the tickets from the csv" do
     manager = TicketManager.new
     tickets=manager.all_tickets
-
     tickets.size.should>0
 
   end
 
 
-  it "should find the flight details of a ticket" do
-     flight_number =1
-     manager = TicketManager.new
-     flight=manager.find_flight flight_number
+  it "should find the user and flight details of a ticket" do
 
-    flight != nil
+     ticket_number = 1
+      manager = TicketManager.new
+
+     ticket=manager.find_ticket ticket_number
+
+     flight = ticket.flight
+     user = ticket.user
+
+     flight != nil && user!=nil
+
   end
-
 
 
 end
