@@ -17,7 +17,7 @@ describe "Ticket Manager" do
 
   it "it should find a ticket" do
 
-    ticket_number = 4324
+    ticket_number = 1
      manager = TicketManager.new
 
     ticket=manager.find_ticket ticket_number
@@ -34,6 +34,16 @@ describe "Ticket Manager" do
     tickets.size.should>0
 
   end
+
+
+  it "should find the flight details of a ticket" do
+     flight_number =1
+     manager = TicketManager.new
+     flight=manager.find_flight flight_number
+
+    flight != nil
+  end
+
 
 
 end
