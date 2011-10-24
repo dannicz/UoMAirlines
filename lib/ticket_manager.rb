@@ -2,12 +2,6 @@ require '../lib/csv_reader'
 
 class TicketManager
 
-  def create_ticket_number
-   random_number = rand(100000)
-   #check that the number is not yet in the csv
-
-  random_number
-  end
 
   def add_details_to_ticket(ticket_found)
 

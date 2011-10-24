@@ -1,4 +1,4 @@
-require '../lib/ticket_manager'
+require '../lib/ticket_number_creator'
 
 class Payment
   attr_accessor :credit_card_no,:amount
@@ -49,8 +49,8 @@ end
   end
 
   def write_payment_details flight
-      ticket_management = TicketManager.new
-      ticket_number = ticket_management.create_ticket_number
+      creator = TicketNumberCreator.new
+      ticket_number = creator.create_ticket_number
       FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "a") do |csv|
       csv << [ticket_number,UserInterface.user_name,flight.fl_id,flight.fl_departure,flight.fl_destination,@amount]
       end
@@ -58,14 +58,13 @@ end
       puts '                        Payment Successful !!!'
       puts "Congratulations! Your ticket has been booked from "+flight.fl_departure+" to "+flight.fl_destination
       puts ''
+      puts 'Copy of ticket has been mailed to your email address'
+      puts ''
   end
 
   def payment_gateway flight
     puts ''
     puts '------------- Redirecting to Payment gateway ------------'
-    puts ''
-    puts 'Press any key to continue ... '
-    key = STDIN.gets.chomp
     puts ''
     puts ''
     credit_card_details
