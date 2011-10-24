@@ -17,7 +17,6 @@ END_OF_MESSAGE
         f.puts "To: "+to
         f.puts "Subject: Ticket is Booked"
         f.puts
-        #Do change these lines#
         f.puts msg
      end
     end

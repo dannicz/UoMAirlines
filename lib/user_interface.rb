@@ -2,7 +2,7 @@ require "../lib/login"
 require "../lib/registration"
 require "../lib/user"
 require "../lib/search_flights"
-
+require "../lib/search_email"
 
 class UserInterface
 
@@ -41,23 +41,31 @@ end
 
   def enter_email
 
-    email = nil
-    error = false
+   email = nil
+   valid = false
+   not_unique = true
 
-    puts 'Enter your Email Address'
-     while !validate_email email
-       if error
-           puts 'Please enter a valid email'
-         end
-        email = gets.chomp
-        error = true
+   puts 'Enter your Email Address'
+    while !validate_email email
+      if valid
+          puts 'Please enter a valid email'
+        end
+       email=STDIN.gets.chomp
+       valid = true
+    end
+
+   while !check_unique_email(email)
+     if not_unique
+        puts 'This email already exists'
      end
+      email = enter_email()
+      not_unique=false
+   end
 
-    @@user_name = email
+   @@user_name = email
+   email
 
-    email
-
-  end
+ end
 
   def enter_password
      password = nil
@@ -69,7 +77,7 @@ end
            puts 'Please Enter a valid PassWord : '
          end
         password = gets.chomp
-       error = true
+        error = true
      end
 
     password
@@ -87,8 +95,6 @@ end
       address = gets.chomp
 
       save_record f_name, s_name, password, email, address
-
-      puts "user-name is "+@@user_name
 
       key = STDIN.gets.chomp
       execute_user_interface
@@ -152,6 +158,15 @@ end
     end
   end
 
+  def check_unique_email (email)
+      check_unique = SearchEmails.new
+      if check_unique.unique_email(email)
+        return false
+      else
+        return true
+      end
+  end
+
   def validate_password password
     if password!= nil and password.length >= 8
       return true
@@ -205,7 +220,3 @@ end
 end
 
 end
-
-
-
-
