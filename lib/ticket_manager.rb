@@ -9,6 +9,13 @@ class TicketManager
   random_number
   end
 
+  def add_details_to_ticket(ticket_found)
+    if ticket_found!= nil
+      ticket_found.flight = find_flight ticket_found.fl_id
+      ticket_found.user= find_user ticket_found.us_email
+    end
+  end
+
   def find_ticket ticket_number
 
       tickets = all_tickets
@@ -18,19 +25,35 @@ class TicketManager
       tickets.each do | ticket |
           if ticket.ticket_number.to_s == ticket_number.to_s
              ticket_found = ticket
+             add_details_to_ticket(ticket_found)
           end
       end
 
 
-      if ticket_found!= nil
-           ticket_found.flight = find_flight ticket_found.fl_id
-           ticket_found.user= find_user ticket_found.us_email
-      end
 
-
-      return ticket_found
+     return ticket_found
 
   end
+
+
+def  find_tickets_from_user email
+
+        tickets = all_tickets
+
+        tickets_found = []
+
+        tickets.each do | ticket |
+            if ticket.us_email == email
+               add_details_to_ticket(ticket)
+               tickets_found.push ticket
+            end
+        end
+
+       return tickets_found
+
+end
+
+
 
   def find_flight fl_id
 

@@ -49,5 +49,14 @@ describe "Ticket Manager" do
 
   end
 
+  it "should find all the tickets from a user" do
+
+    user_id= 'c@d.com'
+    manager = TicketManager.new
+    tickets = manager.find_tickets_from_user user_id
+
+    tickets.size.should > 1
+
+  end
 
 end
