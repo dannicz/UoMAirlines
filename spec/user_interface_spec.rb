@@ -1,8 +1,6 @@
 require "rspec"
 require "../lib/user_interface"
 
-
-
 describe "User interface" do
 
   it "should check for password validation" do
@@ -13,7 +11,6 @@ describe "User interface" do
 
   end
 
-
   it "should check for email validation" do
     ui = UserInterface.new
     email = 'abc@hot.com'
@@ -21,8 +18,5 @@ describe "User interface" do
     ui.validate_email email
 
   end
-
-
-
 
 end
