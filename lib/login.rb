@@ -11,12 +11,12 @@ class LogIn
       success = 0
 
      if(username == nil)
-       puts "username cannot be empty"
+       puts "------- username cannot be empty --------"
        success = 0
        return nil
      end
      if(password == nil)
-       puts "password cannot be empty"
+       puts "------- password cannot be empty --------"
        success = 0
        return nil
      end
@@ -24,7 +24,10 @@ class LogIn
      cust_arr.each do |customer|
            if(customer.email == username )
              if(customer.password == password)
-               puts "login successful"
+               puts '-----------------'
+               puts "login successful !"
+               puts '-----------------'
+               puts ''
                success = 1
                customer_details = customer
                break
@@ -32,7 +35,10 @@ class LogIn
            end
       end
        if(success == 0)
-         puts "login failed"
+         puts '-----------------'
+         puts " login failed !"
+         puts '-----------------'
+         puts ''
          return nil
        else
         return customer_details

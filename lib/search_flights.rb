@@ -4,6 +4,7 @@ require '../lib/flight'
 require '../lib/csv_reader'
 require '../lib/payment'
 require 'search_flights'
+require '../lib/user_interface'
 
 class SearchFlights
 
@@ -55,7 +56,6 @@ class SearchFlights
     else
       puts "#{departure} Not found..."
     end
-    prompt
   end
 
   def findFlights departure,destination
@@ -93,15 +93,18 @@ class SearchFlights
              if foundFlight.fl_id == id
                puts "Flight with id "+ id +" selected."
                flight = foundFlight
-              else
-               puts "Incorrect input"
              end
           end
+            if flight==nil
+               puts "Incorrect input"
+              end
         end
 
     return flight
 
   end
+
+=begin
 
   def prompt
     print "Would you like to search again? (y or n) "
@@ -117,6 +120,7 @@ class SearchFlights
         prompt
     end
   end
+=end
 
 end
 
