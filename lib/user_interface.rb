@@ -260,7 +260,7 @@ end
   puts '| [3] Search for flights                        |'
   puts '| [4] Print ticket details                      |'
   puts '| [5] Change your flight                        |'
-  puts '| [6] Print all my tickets                          |'
+  puts '| [6] Print all my tickets                      |'
   puts '| [7] Logout                                    |'
   puts '|                                               |'
   puts ' ==============================================='
