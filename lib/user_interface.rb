@@ -4,6 +4,7 @@ require "../lib/user"
 require "../lib/search_flights"
 require "../lib/search_email"
 
+
 class UserInterface
 
   def initialize
@@ -123,6 +124,9 @@ end
              #print_ticket
        when '5'
              logout
+      else
+        puts 'Invalid option... Please select again'
+        menu
     end
 
   end
