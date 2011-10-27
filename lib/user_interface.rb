@@ -4,6 +4,7 @@ require "../lib/user"
 require "../lib/search_flights"
 require "../lib/search_email"
 require "../lib/ticket_manager"
+require "../lib/ticket_cancellation"
 
 class UserInterface
 
@@ -139,8 +140,10 @@ end
 
   def cancel_reservation
      if(@@user_name != nil)
-       manager= TicketManager.new
-       manager.print_tickets_from_user @@user_name
+       ticket_cancel= TicketCancellation.new
+       puts 'Please enter the ticket number to cancel'
+       ticket_number=STDIN.gets.chomp
+       ticket_cancel.delete_ticket ticket_number
      else
         puts 'We are sorry! You need to login/Register to use our services'
         puts ''
