@@ -137,9 +137,9 @@ end
       if(@@user_name != nil)
         manager= TicketManager.new
         manager.print_tickets_from_user @@user_name
-        puts "Press 'Enter' to continue..."
-        key = STDIN.gets.chomp
-        execute_user_interface
+        puts
+        puts "To see more details of your flight."
+        print_ticket
       else
         puts 'We are sorry! You need to login/Register to see your tickets'
         puts ''
