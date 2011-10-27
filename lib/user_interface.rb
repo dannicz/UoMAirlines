@@ -120,8 +120,10 @@ end
        when '3'
              search
        when '4'
-             #print_ticket
+             print_ticket
        when '5'
+             update
+      when '6'
              logout
     end
 
@@ -201,8 +203,8 @@ end
   puts '| [2] Login                                     |'
   puts '| [3] Search for flights                        |'
   puts '| [4] Print ticket details                      |'
-  puts '| [5] Logout                                    |'
-  puts '|                                               |'
+  puts '| [5] Change your flight                        |'
+  puts '| [6] Logout                                    |'
   puts ' ==============================================='
   puts ' Enter your Option: '
 end
