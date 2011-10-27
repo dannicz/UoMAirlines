@@ -21,11 +21,11 @@ class SearchFlights
     @fl_Price = []
 
     FasterCSV.foreach(path_to_csv, :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |column|
-      @fl_Departure << column[1] #change here to get the wanted value#
-      @fl_Destination << column[2]
-      @fl_DepartureTime << column[3]
-      @fl_ArrivalTime << column[4]
-      @fl_Price << column[5]
+      @fl_Departure << column[1].downcase #change here to get the wanted value#
+      @fl_Destination << column[2].downcase
+      @fl_DepartureTime << column[3].downcase
+      @fl_ArrivalTime << column[4].downcase
+      @fl_Price << column[5].downcase
     end
   end
 
@@ -34,11 +34,11 @@ class SearchFlights
     departure = gets.chomp
     puts
 
-    if @fl_Departure.include?(departure)
+    if @fl_Departure.include?(departure.downcase)
       print "Enter Destination Town: "
       destination = gets.chomp
 
-      if @fl_Destination.include?(destination)
+      if @fl_Destination.include?(destination.downcase)
 
         foundFlights =  findFlights departure,destination
 
@@ -65,7 +65,7 @@ class SearchFlights
     foundFlights = []
 
         flights.each do |flight|
-          if(flight.fl_departure == departure && flight.fl_destination == destination)
+          if(flight.fl_departure.downcase == departure.downcase && flight.fl_destination.downcase == destination.downcase)
             foundFlights.push flight
           end
 

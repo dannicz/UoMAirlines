@@ -122,6 +122,9 @@ end
 
       if ticket!=nil
         print_ticket_details ticket
+      else
+        puts 'Ticket number not found'
+        puts
 
       end
   end
