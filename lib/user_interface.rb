@@ -144,15 +144,15 @@ end
        puts 'Please enter the ticket number to cancel'
        ticket_number=STDIN.gets.chomp
        ticket_cancel.delete_ticket ticket_number
+       puts 'Your ticket has been canceled'
      else
         puts 'We are sorry! You need to login/Register to use our services'
         puts ''
-        puts "Press 'Enter' to continue..."
-        key = STDIN.gets.chomp
-        execute_user_interface
-     end
 
-    puts 'Please select the flight you would like to cancel '
+     end
+      puts "Press 'Enter' to continue..."
+      key = STDIN.gets.chomp
+     execute_user_interface
   end
 
   def update
@@ -174,27 +174,24 @@ end
       if(@@user_name != nil)
         manager= TicketManager.new
         manager.print_tickets_from_user @@user_name
-        puts
-        puts "To see more details of your flight."
-        print_ticket
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
       else
         puts 'We are sorry! You need to login/Register to see your tickets'
         puts ''
         puts "Press 'Enter' to continue..."
         key = STDIN.gets.chomp
-        execute_user_interface
       end
-
+      execute_user_interface
   end
 
   def print_ticket
 
     manager= TicketManager.new
     manager.print_ticket_prompt
-     puts "Press 'Enter' to continue..."
+    puts "Press 'Enter' to continue..."
     key = STDIN.gets.chomp
     execute_user_interface
-
   end
 
   def search
