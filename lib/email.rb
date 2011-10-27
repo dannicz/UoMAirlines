@@ -4,7 +4,7 @@ class Send_email
 
   def send_email(to, to_alias, message)
 	  msg = <<END_OF_MESSAGE
-    From: #{"Admin"} <#{"razisg@cs.manchester.ac.uk"}>
+    From: #{"Booking System"} <#{"booking@uomairlines.com"}>
     To: #{to_alias} <#{to}>
 
     #{message}
@@ -24,6 +24,3 @@ END_OF_MESSAGE
   end
 
 end
-
-send=Send_email.new
-send.send_email("s_aljameel@yahoo.com","User's First Name","Ticket successfully booked!")

@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'faster_csv'
-require '../lib/user'
+require 'user'
 require '../lib/flight'
 require '../lib/ticket'
 

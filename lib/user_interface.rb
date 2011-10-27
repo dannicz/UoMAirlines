@@ -121,16 +121,50 @@ end
        when '3'
              search
        when '4'
-            print_ticket
+             print_ticket
        when '5'
-            print_my_tickets
+             update
        when '6'
+             cancel_reservation
+       when '7'
+             print_my_tickets
+       when '8'
              logout
        else
         puts 'Invalid option. Please select again'
         menu
     end
 
+  end
+
+  def cancel_reservation
+     if(@@user_name != nil)
+       manager= TicketManager.new
+       manager.print_tickets_from_user @@user_name
+     else
+        puts 'We are sorry! You need to login/Register to use our services'
+        puts ''
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+     end
+
+    puts 'Please select the flight you would like to cancel '
+  end
+
+  def update
+     if(@@user_name != nil)
+       manager= TicketManager.new
+       manager.print_tickets_from_user @@user_name
+     else
+        puts 'We are sorry! You need to login/Register to use our services'
+        puts ''
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+     end
+
+    puts 'Please select the flight you would like to update '
   end
 
   def print_my_tickets
@@ -242,8 +276,10 @@ end
   puts '| [2] Login                                     |'
   puts '| [3] Search for flights                        |'
   puts '| [4] Print ticket details                      |'
-  puts '| [5] Print my tickets                          |'
-  puts '| [6] Logout                                    |'
+  puts '| [5] Change your flight                        |'
+  puts '| [6] Cancel reservation                        |'
+  puts '| [7] Print all my tickets                      |'
+  puts '| [8] Logout                                    |'
   puts '|                                               |'
   puts ' ==============================================='
   puts ' Enter your Option: '
