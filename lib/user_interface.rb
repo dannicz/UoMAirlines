@@ -3,6 +3,7 @@ require "../lib/registration"
 require "../lib/user"
 require "../lib/search_flights"
 require "../lib/search_email"
+require "../lib/ticket_manager"
 
 class UserInterface
 
@@ -34,7 +35,7 @@ class UserInterface
     puts 'You are already logged in...'
   end
 
-  puts 'Press any key to continue...'
+  puts "Press 'Enter' to continue..."
   key = STDIN.gets.chomp
   execute_user_interface
 end
@@ -101,7 +102,7 @@ end
 
      else
         puts 'You cant register when you are logged in...'
-        puts 'Press any key to continue ...'
+        puts "Press 'Enter' to continue"
         key = STDIN.gets.chomp
         execute_user_interface
      end
@@ -123,21 +124,76 @@ end
              print_ticket
        when '5'
              update
-      when '6'
+       when  '6'
+             print_my_tickets
+       when  '7'
              logout
+       else
+        puts 'Invalid option. Please select again'
+        menu
     end
 
   end
 
-  def search
+  def update
+     if(@@user_name != nil)
+       manager= TicketManager.new
+       manager.print_tickets_from_user @@user_name
+     else
+        puts 'We are sorry! You need to login/Register to use our services'
+        puts ''
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+     end
 
-      puts "Please enter the flight details"
-      puts
-      searcher = SearchFlights.new
-      searcher.search_for_flights
-      puts 'Press any key to continue...'
-      key = STDIN.gets.chomp
-      execute_user_interface
+    puts 'Please Choose the flight you would like to update '
+  end
+
+  def print_my_tickets
+      if(@@user_name != nil)
+        manager= TicketManager.new
+        manager.print_tickets_from_user @@user_name
+        puts
+        puts "To see more details of your flight."
+        print_ticket
+      else
+        puts 'We are sorry! You need to login/Register to see your tickets'
+        puts ''
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+      end
+
+  end
+
+  def print_ticket
+
+    manager= TicketManager.new
+    manager.print_ticket_prompt
+     puts "Press 'Enter' to continue..."
+    key = STDIN.gets.chomp
+    execute_user_interface
+
+  end
+
+  def search
+      if(@@user_name != nil)
+        puts "Please enter the flight details"
+        puts
+        searcher = SearchFlights.new
+        searcher.search_for_flights
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+      else
+        puts 'We are sorry! You need to login/Register to use our services'
+        puts ''
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
+        execute_user_interface
+      end
+
 end
 
   def prompt
@@ -187,7 +243,7 @@ end
        puts ''
        puts 'You are automatically logged in...'
        puts 'You may right away search for flights !!!'
-       puts 'Press any key to continue...'
+       puts "Press 'Enter' to continue..."
 end
 
   def welcome
@@ -204,7 +260,9 @@ end
   puts '| [3] Search for flights                        |'
   puts '| [4] Print ticket details                      |'
   puts '| [5] Change your flight                        |'
-  puts '| [6] Logout                                    |'
+  puts '| [6] Print all my tickets                          |'
+  puts '| [7] Logout                                    |'
+  puts '|                                               |'
   puts ' ==============================================='
   puts ' Enter your Option: '
 end

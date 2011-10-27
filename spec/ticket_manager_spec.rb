@@ -37,7 +37,7 @@ describe "Ticket Manager" do
 
   it "should find the user and flight details of a ticket" do
 
-     ticket_number = 1
+     ticket_number = 2
       manager = TicketManager.new
 
      ticket=manager.find_ticket ticket_number
@@ -45,7 +45,7 @@ describe "Ticket Manager" do
      flight = ticket.flight
      user = ticket.user
 
-     flight != nil && user!=nil
+     flight.should!= nil && user.should!=nil
 
   end
 
@@ -58,5 +58,20 @@ describe "Ticket Manager" do
     tickets.size.should > 1
 
   end
+
+  it "should print the details of the ticket" do
+
+    ticket_number = 2
+    manager = TicketManager.new
+    manager.print_ticket ticket_number
+
+  end
+
+  it "should print the tickets of a user" do
+     user_id= 'c@d.com'
+     manager = TicketManager.new
+     manager.print_tickets_from_user user_id
+  end
+
 
 end
