@@ -1,4 +1,4 @@
-"ticket_number,us_Email",fl_Id,fl_Departure,fl_Destination,payment
+ticket_number,us_Email,fl_Id,fl_Departure,fl_Destination,payment
 100,rahul@gmail.com,101,Manchester,Dubai,350
 2343,r@g.c,1,Manchester,Dubai,350
 3123,r@g.c,1,Manchester,Dubai,350
@@ -29,16 +29,3 @@
 27689,makisraz@gmail.com,1,Manchester,Dubai,350
 51136,makisraz@gmail.com,1,Manchester,Dubai,350
 58953,makisraz@gmail.com,1,Manchester,Dubai,350
-<<<<<<< HEAD,,,,,
-=======,,,,,
-76140,makisraz@gmail.com,1,Manchester,Dubai,350
-80039,makisraz@gmail.com,1,Manchester,Dubai,350
-<<<<<<< HEAD,,,,,
-1753,makisraz@gmail.com,1,Manchester,Dubai,350
-11532,s_aljameel@yahoo.com,1,Manchester,Dubai,350
-=======,,,,,
->>>>>>> 7b6cfb965950930ec54fe716afeb971942414efa,,,,,
->>>>>>> bc8bcde9602be3d213c1381d1827269cd06773ec,,,,,
-9647,makisraz@gmail.com,3,Manchester,Paris,100
-34613,makisraz@gmail.com,1,Manchester,Dubai,350
-40939,makisraz@gmail.com,2,Manchester,New York,750
