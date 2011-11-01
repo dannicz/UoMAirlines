@@ -18,9 +18,9 @@ class Payment
 
 
   def payment_amount flight
-      puts "The price for this ticket is " +flight.fl_price.to_s+"GBP"
+      puts "The price for this ticket is " +flight.fl_price.to_s+" GBP"
       puts 'Enter your Payment amount'
-       @amount = gets.chomp
+      @amount = gets.chomp
       valid =  validate_payment_amount flight
       if(!valid )
         puts 'Invalid Amount Entered'
@@ -36,8 +36,6 @@ class Payment
 def is_number?(i)
   true if Float(i) rescue false
 end
-
-
 
   def validate_payment_amount  flight
     is_number?(@amount) && @amount.to_i == flight.fl_price.to_i
@@ -70,8 +68,7 @@ end
 
   def payment_gateway flight
     puts ''
-    puts '------------- Redirecting to Payment gateway ------------'
-    puts ''
+    puts '------------ Redirecting to Payment gateway ------------'
     puts ''
     credit_card_details
     payment_amount flight
