@@ -28,11 +28,8 @@ class Payment
   end
 
   def validate_credit_card
-       if(is_number?(@credit_card_no) && @credit_card_no.length == 16)
-        valid = 1
-       else valid = 0
-       end
-   return valid
+      is_number?(@credit_card_no) && @credit_card_no.length == 16
+
   end
 
 def is_number?(i)
@@ -42,12 +39,7 @@ end
 
 
   def validate_payment_amount  flight
-         if (is_number?(@amount) && @amount == flight.fl_price)
-               valid = 1
-         else
-           valid = 0
-         end
-    return valid
+         is_number?(@amount) && @amount == flight.fl_price
   end
 
   def write_payment_details flight
