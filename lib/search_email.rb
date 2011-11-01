@@ -18,10 +18,8 @@ class SearchEmails
   def unique_email (email)
 
     search_for_emails
+  @us_email.include?(email)
 
-    if @us_email.include?(email)
-      return true
-    end
 
   end
 

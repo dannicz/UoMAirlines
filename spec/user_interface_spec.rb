@@ -19,4 +19,11 @@ describe "User interface" do
     result.should == true
   end
 
+  it "should check for unique email " do
+    ui = UserInterface.new
+
+    ui.is_email_unique('a@b.com').should == true
+
+  end
+
 end

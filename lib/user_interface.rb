@@ -57,7 +57,7 @@ end
        valid = true
     end
 
-   while !check_unique_email(email)
+   while is_email_unique(email)
      if not_unique
         puts 'This email already exists'
      end
@@ -230,29 +230,16 @@ end
 end
 
   def validate_email(email)
-    if email!= nil and email.include? "@" and email.include? "."
-       return true
-        else
-        return false
-    end
+    email!= nil and email.include? "@" and email.include? "."
   end
 
-  def check_unique_email (email)
+  def is_email_unique (email)
       check_unique = SearchEmails.new
-      if check_unique.unique_email(email)
-        return false
-      else
-        return true
-      end
+       check_unique.unique_email(email)
   end
 
   def validate_password password
-    if password!= nil and password.length >= 8
-      return true
-      else
-
-        return false
-    end
+   password!= nil and password.length >= 8
   end
 
   def save_record f_name, s_name, password, email, address

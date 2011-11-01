@@ -7,10 +7,10 @@ describe Registration do
 
 
   it "should register a user to the database" do
-    user = User.new "","","","","",""
+    user = User.new "Sophia","Meng","12341234","sophia@meng.com","Whitworth Park","client"
     registration = Registration.new
-    result = registration.add_customer user
-    result == true
+    registration.add_customer(user).should be_true
+
   end
 
 end
