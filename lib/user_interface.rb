@@ -154,7 +154,7 @@ end
        puts''
        puts 'Please enter the ticket number to cancel'
        ticket_number=STDIN.gets.chomp
-       ticket_cancel.delete_ticket ticket_number
+       ticket_cancel.delete_ticket ticket_number, false
        puts 'Your ticket has been cancelled.An e-mail has been sent for further information.'
      else
         puts 'We are sorry! You need to login/Register to use our services'

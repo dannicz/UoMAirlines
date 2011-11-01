@@ -48,10 +48,11 @@ class SearchFlights
     else
       diff_amount = TicketManager.old_flight_price.to_i - flight.fl_price.to_i
       puts "Your ticket has been booked (see e-mail for further information) and the difference amount "+diff_amount.to_s+" GBP"+ " shall be credited to your account automatically"
+      #send_new_booking_email
     end
 
     ticket_cancellation = TicketCancellation.new
-    ticket_cancellation.delete_ticket TicketManager.old_ticket_number
+    ticket_cancellation.delete_ticket TicketManager.old_ticket_number, true
     TicketManager.reinitialize
   end
 
