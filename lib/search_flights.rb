@@ -46,15 +46,26 @@ class SearchFlights
         while flight == nil
             flight = selectDesiredFlight foundFlights
         end
+        if(@@old_flight_id != nil)
+          if(@@old_flight_price < @fl_price)
+            @fl_Price =   @@old_flight_price - @fl_price
+            payment = Payment.new
+            payment.payment_gateway flight
+          else
 
-        payment = Payment.new
-        payment.payment_gateway flight
+            end
+        else
+         payment = Payment.new
+         payment.payment_gateway flight
+         end
 
       else
         puts "#{destination} Not found..."
+        search_for_departurePlace
       end
     else
       puts "#{departure} Not found..."
+      search_for_departurePlace
     end
   end
 
@@ -103,24 +114,6 @@ class SearchFlights
     return flight
 
   end
-
-=begin
-
-  def prompt
-    print "Would you like to search for another flight? (y or n) "
-    answer = gets.chomp.downcase
-
-    case answer
-      when /y/
-        search_for_departurePlace
-      when /n/
-        puts "Goodbye."
-        exit
-      else
-        prompt
-    end
-  end
-=end
 
 end
 

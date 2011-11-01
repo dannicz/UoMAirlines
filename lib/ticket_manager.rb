@@ -1,4 +1,5 @@
 require '../lib/csv_reader'
+require '../lib/user_interface'
 
 class TicketManager
 
@@ -39,6 +40,30 @@ def print_tickets_from_user email
   end
 
 end
+
+def update_tickets email
+
+  tickets = find_tickets_from_user email
+
+  puts 'Ticket Number | Departure | Destination |Flight Id'
+  tickets.each do | ticket |
+    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination+''+ticket.flight.fl_id
+  end
+  puts 'Please select the flight you would like to update '
+  @@old_flight_id=STDIN.gets.chomp
+  tickets.each do | ticket |
+    if(ticket.flight.fl_id == @@old_flight_id)
+      @@old_flight_price =  ticket.payment
+      break
+    end
+  end
+
+  puts 'Please press Enter to search for new flights'
+  STDIN.gets.chomp
+
+
+end
+
 
 def  find_tickets_from_user email
 
@@ -96,7 +121,7 @@ end
     puts 'Ticket number: '+ticket.ticket_number
     puts "________________________________________"
     puts 'Surname: '+ticket.user.l_name
-    puts 'Firstname: '+ticket.user.f_name
+    puts 'First name: '+ticket.user.f_name
     puts "________________________________________"
     puts 'Flight-ID: '+ticket.flight.fl_id
     puts

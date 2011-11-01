@@ -159,7 +159,8 @@ end
   def update
      if(@@user_name != nil)
        manager= TicketManager.new
-       manager.print_tickets_from_user @@user_name
+       manager.update_tickets @@user_name
+       search
      else
         puts 'We are sorry! You need to login/Register to use our services'
         puts ''
@@ -168,7 +169,8 @@ end
         execute_user_interface
      end
 
-    puts 'Please select the flight you would like to update '
+
+
 
   end
 
