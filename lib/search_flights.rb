@@ -46,9 +46,11 @@ class SearchFlights
       payment = Payment.new
       payment.payment_gateway flight
     else
-      diff_amount = TicketManager.old_flight_price.to_i - flight.fl_price.to_i
-      puts "Your ticket has been booked (see e-mail for further information) and the difference amount "+diff_amount.to_s+" GBP"+ " shall be credited to your account automatically"
-      #send_new_booking_email
+      payment = Payment.new
+      payment.amount = TicketManager.old_flight_price.to_i - flight.fl_price.to_i
+      puts "Your ticket has been booked.An e-mail has been sent for further information."
+      refund = true
+      payment.write_payment_details flight,refund
     end
 
     ticket_cancellation = TicketCancellation.new
