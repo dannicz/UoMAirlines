@@ -30,7 +30,7 @@ describe "My behaviour" do
   it "should be a successful login" do
     login = LogIn.new
     username = "c@d.com"
-    pass = "456789456"
+    pass = "12345678"
     user = login.check_credentials username,pass
     user.should_not == nil
   end

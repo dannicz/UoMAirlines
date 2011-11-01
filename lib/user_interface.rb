@@ -24,10 +24,17 @@ class UserInterface
            while user == nil
              user = prompt
               if user != nil
+                puts '-----------------'
+                puts "login successful !"
+                puts '-----------------'
+                puts ''
                 puts 'Welcome '+user.f_name
                 puts 'Happy to see you again !'
                 puts ''
               else
+                puts '-----------------'
+                 puts " login failed !"
+                 puts '-----------------'
                  puts 'Oops! Invalid credentials...'
                 puts ''
               end
