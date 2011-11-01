@@ -6,6 +6,7 @@ require "../lib/search_email"
 require "../lib/ticket_manager"
 require "../lib/ticket_cancellation"
 
+
 class UserInterface
 
   def initialize
@@ -131,8 +132,8 @@ end
              print_my_tickets
        when '8'
              logout
-       else
-        puts 'Invalid option. Please select again'
+        else
+        puts 'Invalid option... Please select again'
         menu
     end
 
@@ -158,7 +159,8 @@ end
   def update
      if(@@user_name != nil)
        manager= TicketManager.new
-       manager.print_tickets_from_user @@user_name
+       manager.update_tickets @@user_name
+       search
      else
         puts 'We are sorry! You need to login/Register to use our services'
         puts ''
@@ -167,7 +169,9 @@ end
         execute_user_interface
      end
 
-    puts 'Please select the flight you would like to update '
+
+
+
   end
 
   def print_my_tickets
