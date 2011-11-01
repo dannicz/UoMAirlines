@@ -1,28 +1,31 @@
 require "rspec"
 require '../lib/ticket_manager'
+require '../lib/ticket_number_creator'
+require '../lib/ticket'
 
 describe "Ticket Manager" do
 
   it "should create a different ticket number each time" do
 
-    manager = TicketManager.new
-    ticket1=manager.create_ticket_number
-    ticket2=manager.create_ticket_number
+    creator = TicketNumberCreator.new
+    ticket1=creator.create_ticket_number
+    ticket2=creator.create_ticket_number
 
       puts ticket1.to_s+' '+ticket2.to_s
 
-    ticket1 != ticket2
+    ticket1.should_not == ticket2
 
   end
 
+
   it "it should find a ticket" do
 
-    ticket_number = 1
+    ticket_number = 100
      manager = TicketManager.new
 
     ticket=manager.find_ticket ticket_number
 
-    ticket != nil
+    ticket.should_not == nil
 
 
   end
@@ -37,7 +40,7 @@ describe "Ticket Manager" do
 
   it "should find the user and flight details of a ticket" do
 
-     ticket_number = 2
+     ticket_number = 543
       manager = TicketManager.new
 
      ticket=manager.find_ticket ticket_number
@@ -45,7 +48,7 @@ describe "Ticket Manager" do
      flight = ticket.flight
      user = ticket.user
 
-     flight.should!= nil && user.should!=nil
+     flight.should_not == nil && user.should_not ==nil
 
   end
 

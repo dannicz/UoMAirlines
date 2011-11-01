@@ -18,7 +18,7 @@ describe TicketCancellation do
     tickets = csv_reader.all_tickets
     final_rows= tickets.size
 
-    final_rows == initial_rows-1
+    final_rows.should == initial_rows-1
 
   end
 end

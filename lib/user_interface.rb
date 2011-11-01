@@ -6,7 +6,6 @@ require "../lib/search_email"
 require "../lib/ticket_manager"
 require "../lib/ticket_cancellation"
 
-
 class UserInterface
 
   def initialize
@@ -24,10 +23,17 @@ class UserInterface
            while user == nil
              user = prompt
               if user != nil
+                puts '-----------------'
+                puts "login successful !"
+                puts '-----------------'
+                puts ''
                 puts 'Welcome '+user.f_name
                 puts 'Happy to see you again !'
                 puts ''
               else
+                puts '-----------------'
+                 puts " login failed !"
+                 puts '-----------------'
                  puts 'Oops! Invalid credentials...'
                 puts ''
               end
@@ -57,7 +63,7 @@ end
        valid = true
     end
 
-   while !check_unique_email(email)
+   while is_email_unique(email)
      if not_unique
         puts 'This email already exists'
      end
@@ -145,7 +151,7 @@ end
        puts 'Please enter the ticket number to cancel'
        ticket_number=STDIN.gets.chomp
        ticket_cancel.delete_ticket ticket_number
-       puts 'Your ticket has been canceled'
+       puts 'Your ticket has been cancelled.An e-mail has been sent for further information.'
      else
         puts 'We are sorry! You need to login/Register to use our services'
         puts ''
@@ -168,10 +174,6 @@ end
         key = STDIN.gets.chomp
         execute_user_interface
      end
-
-
-
-
   end
 
   def print_my_tickets
@@ -230,29 +232,16 @@ end
 end
 
   def validate_email(email)
-    if email!= nil and email.include? "@" and email.include? "."
-       return true
-        else
-        return false
-    end
+    email!= nil and email.include? "@" and email.include? "."
   end
 
-  def check_unique_email (email)
+  def is_email_unique (email)
       check_unique = SearchEmails.new
-      if check_unique.unique_email(email)
-        return false
-      else
-        return true
-      end
+       check_unique.unique_email(email)
   end
 
   def validate_password password
-    if password!= nil and password.length >= 8
-      return true
-      else
-
-        return false
-    end
+   password!= nil and password.length >= 8
   end
 
   def save_record f_name, s_name, password, email, address
