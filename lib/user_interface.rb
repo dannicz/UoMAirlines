@@ -147,7 +147,7 @@ end
         execute_user_interface
      end
 
-    puts 'Please Choose the flight you would like to update '
+        puts 'Please Choose the flight you would like to update '
   end
 
   def print_my_tickets
