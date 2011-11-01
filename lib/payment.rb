@@ -40,7 +40,7 @@ end
 
 
   def validate_payment_amount  flight
-    is_number?(@amount) && @amount.to_i == flight.fl_price
+    is_number?(@amount) && @amount.to_i == flight.fl_price.to_i
 
   end
 
