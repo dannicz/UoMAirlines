@@ -85,7 +85,6 @@ def all_tickets
     flights.push flight
 
  end
-
   return flights
 
 end

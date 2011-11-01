@@ -4,6 +4,7 @@ require "../lib/user"
 require "../lib/search_flights"
 require "../lib/search_email"
 require "../lib/ticket_manager"
+require "../lib/ticket_cancellation"
 
 class UserInterface
 
@@ -124,15 +125,34 @@ end
              print_ticket
        when '5'
              update
-       when  '6'
+       when '6'
+             cancel_reservation
+       when '7'
              print_my_tickets
-       when  '7'
+       when '8'
              logout
        else
         puts 'Invalid option. Please select again'
         menu
     end
 
+  end
+
+  def cancel_reservation
+     if(@@user_name != nil)
+       ticket_cancel= TicketCancellation.new
+       puts 'Please enter the ticket number to cancel'
+       ticket_number=STDIN.gets.chomp
+       ticket_cancel.delete_ticket ticket_number
+       puts 'Your ticket has been canceled'
+     else
+        puts 'We are sorry! You need to login/Register to use our services'
+        puts ''
+
+     end
+      puts "Press 'Enter' to continue..."
+      key = STDIN.gets.chomp
+     execute_user_interface
   end
 
   def update
@@ -147,34 +167,32 @@ end
         execute_user_interface
      end
 
-        puts 'Please Choose the flight you would like to update '
+    puts 'Please select the flight you would like to update '
+
   end
 
   def print_my_tickets
       if(@@user_name != nil)
         manager= TicketManager.new
         manager.print_tickets_from_user @@user_name
-        puts
-        puts "To see more details of your flight."
-        print_ticket
+        puts "Press 'Enter' to continue..."
+        key = STDIN.gets.chomp
       else
         puts 'We are sorry! You need to login/Register to see your tickets'
         puts ''
         puts "Press 'Enter' to continue..."
         key = STDIN.gets.chomp
-        execute_user_interface
       end
-
+      execute_user_interface
   end
 
   def print_ticket
 
     manager= TicketManager.new
     manager.print_ticket_prompt
-     puts "Press 'Enter' to continue..."
+    puts "Press 'Enter' to continue..."
     key = STDIN.gets.chomp
     execute_user_interface
-
   end
 
   def search
@@ -260,8 +278,9 @@ end
   puts '| [3] Search for flights                        |'
   puts '| [4] Print ticket details                      |'
   puts '| [5] Change your flight                        |'
-  puts '| [6] Print all my tickets                      |'
-  puts '| [7] Logout                                    |'
+  puts '| [6] Cancel reservation                        |'
+  puts '| [7] Print all my tickets                      |'
+  puts '| [8] Logout                                    |'
   puts '|                                               |'
   puts ' ==============================================='
   puts ' Enter your Option: '
