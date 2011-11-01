@@ -127,7 +127,7 @@ end
        when '2'
              login
        when '3'
-             search
+             search_gateway
        when '4'
              print_ticket
        when '5'
