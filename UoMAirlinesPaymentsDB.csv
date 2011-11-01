@@ -13,8 +13,6 @@ ticket_number,us_Email,fl_Id,fl_Departure,fl_Destination,payment
 76857,a@b.com,5,Manchester,Dubai,400
 3057,a@b.com,5,Manchester,Dubai,400
 85987,ad@d.com,1,Manchester,Dubai,350
-79136,makisraz@gmail.com,1,Manchester,Dubai,350
-48724,makisraz@gmail.com,5,Manchester,Dubai,400
 97483,makisraz@gmail.com,5,Manchester,Dubai,400
 36624,makisraz@gmail.com,5,Manchester,Dubai,400
 76859,makisraz@gmail.com,5,Manchester,Dubai,400
@@ -27,5 +25,3 @@ ticket_number,us_Email,fl_Id,fl_Departure,fl_Destination,payment
 65398,makisraz@gmail.com,1,Manchester,Dubai,350
 86268,makisraz@gmail.com,1,Manchester,Dubai,350
 27689,makisraz@gmail.com,1,Manchester,Dubai,350
-51136,makisraz@gmail.com,1,Manchester,Dubai,350
-58953,makisraz@gmail.com,1,Manchester,Dubai,350

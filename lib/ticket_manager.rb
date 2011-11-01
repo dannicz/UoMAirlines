@@ -3,9 +3,11 @@ require '../lib/user_interface'
 
 class TicketManager
 
-  def initialize
   @@old_ticket_number= nil
   @@old_flight_price = nil
+
+  def initialize
+
   end
 
   def self .old_ticket_number
@@ -13,6 +15,11 @@ class TicketManager
   end
     def self .old_flight_price
     @@old_flight_price
+    end
+
+  def self .reinitialize
+    @@old_ticket_number=nil
+    @@old_flight_price=nil
     end
 
   def add_details_to_ticket(ticket_found)
@@ -108,7 +115,7 @@ class TicketManager
       flight_found = nil
 
       flights.each do |flight|
-          if flight.fl_id == fl_id
+          if flight.fl_id.to_i == fl_id.to_i
             flight_found = flight
           end
       end
@@ -123,7 +130,7 @@ class TicketManager
       user_found = nil
 
       users.each do |user|
-          if user.email == email
+          if user.email.to_s == email.to_s
             user_found = user
           end
       end
