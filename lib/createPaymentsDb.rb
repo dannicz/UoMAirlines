@@ -3,12 +3,12 @@ require 'faster_csv'
 
 unless File.exists?("../UoMAirlinesPaymentsDB.csv")
   FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "w") do |csv|
-    csv << ["us_Email","fl_Id","fl_Departure","fl_Destination","payment"]
+    csv << ["ticket_number,us_Email","fl_Id","fl_Departure","fl_Destination","payment"]
   end
 end
 
 FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "a") do |csv|
-  csv << ["rahul@gmail.com","101","Manchester","Dubai","350"]
+  csv << ["1,rahul@gmail.com","101","Manchester","Dubai","350"]
 end
 
 

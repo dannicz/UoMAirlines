@@ -1,0 +1,8 @@
+us_FirstName,us_SurName,us_Password,us_Email,us_Address,us_Type
+aaa,bbb,12345678,a@b.com,1 Alpha Street,admin
+ccc,ddd,456789456,c@d.com,2 Beta Street,client
+a,b,1234567890,m@r.com,k 12,client
+mak,raz,1234567890,m@m.gr,k 12,client
+Makis,Razis,12345678,makisraz@gmail.com,k,client
+Makis,Razis,123456789,makis@mail.com,Oxford Road 198,client
+q,q,12345678,q@k.com,k 12,client

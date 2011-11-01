@@ -2,18 +2,12 @@ require '../lib/csv_reader'
 
 class TicketManager
 
-  def create_ticket_number
-   random_number = rand(100000)
-   #check that the number is not yet in the csv
-
-  random_number
-  end
 
   def add_details_to_ticket(ticket_found)
-    if ticket_found!= nil
+
       ticket_found.flight = find_flight ticket_found.fl_id
       ticket_found.user= find_user ticket_found.us_email
-    end
+
   end
 
   def find_ticket ticket_number
@@ -35,6 +29,16 @@ class TicketManager
 
   end
 
+def print_tickets_from_user email
+
+  tickets = find_tickets_from_user email
+
+  puts 'Ticket Number | Departure | Destination '
+  tickets.each do | ticket |
+    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination
+  end
+
+end
 
 def  find_tickets_from_user email
 
@@ -55,6 +59,7 @@ end
 
 
 
+
   def find_flight fl_id
 
       flights = all_flights
@@ -67,7 +72,9 @@ end
           end
       end
        return flight_found
+
   end
+
 
   def find_user email
 
@@ -80,19 +87,34 @@ end
             user_found = user
           end
       end
+
        return user_found
   end
 
   def print_ticket_details(ticket)
+    puts
+    puts 'Ticket number: '+ticket.ticket_number
+    puts "________________________________________"
     puts 'Surname: '+ticket.user.l_name
     puts 'Firstname: '+ticket.user.f_name
     puts "________________________________________"
-    puts 'Ticket number: '+ticket.ticket_number
     puts 'Flight-ID: '+ticket.flight.fl_id
     puts
     puts 'Departure: '+ticket.flight.fl_departure+' Time: '+ ticket.flight.fl_departure_time
-    puts 'Destination: '+ticket.flight.fl_destination+' Time: ' + ticket.flight.fl_destination_time
+    puts 'Destination: '+ticket.flight.fl_destination+' Time: ' + ticket.flight.fl_arrival_time
   end
+
+  def print_ticket_prompt
+
+    puts 'Please enter the ticket number of your flight'
+    ticket_number=STDIN.gets.chomp
+
+    print_ticket ticket_number
+
+  end
+
+
+
 
   def print_ticket ticket_number
 
@@ -100,6 +122,9 @@ end
 
       if ticket!=nil
         print_ticket_details ticket
+      else
+        puts 'Ticket number not found'
+        puts
 
       end
   end

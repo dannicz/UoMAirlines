@@ -1,7 +1,7 @@
 fl_Id,fl_Departure,fl_Destination,fl_DepartureTime,fl_ArrivalTime,fl_Price
 1,Manchester,Dubai,12:00,18:00,350
 2,Manchester,New York,12:00,19:00,850
-3,Manchester,France,15:00,17:30,450
+3,Manchester,Paris,15:00,17:30,450
 4,Manchester,Mumbai,10:00,22:00,900
 5,Manchester,Dubai,18:00,20:00,400
 6,Manchester,Mumbai,12:00,21:00,850
