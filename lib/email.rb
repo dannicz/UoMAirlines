@@ -15,7 +15,7 @@ END_OF_MESSAGE
         #Do NOT change these lines#
         f.puts "From: razisg@cs.manchester.ac.uk"
         f.puts "To: "+to
-        f.puts "Subject: Ticket is Booked"
+        f.puts "Subject: UoM Ticket Information"
         f.puts
         f.puts msg
      end
