@@ -205,6 +205,7 @@ end
         puts "Please enter the flight details"
         puts
         searcher = SearchFlights.new
+        manager = TicketManager.new
         searcher.search_for_flights
         puts "Press 'Enter' to continue..."
         key = STDIN.gets.chomp

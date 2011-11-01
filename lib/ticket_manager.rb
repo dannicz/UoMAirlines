@@ -8,7 +8,7 @@ class TicketManager
     @@old_flight_price = nil
     end
 
-  def self.old_flight_id
+  def self .old_flight_id
     @@old_flight_id
   end
     def self .old_flight_price
