@@ -4,7 +4,7 @@ class Send_email
 
   def send_email(to, to_alias, message)
 	  msg = <<END_OF_MESSAGE
-    From: #{"Booking System"} <#{"booking@UoMAirlines.com"}>
+    From: #{"Booking System"} <#{"booking@uomairlines.com"}>
     To: #{to_alias} <#{to}>
 
     #{message}

@@ -71,18 +71,17 @@ end
 
   tickets = find_tickets_from_user email
 
-  puts 'Ticket Number | Departure | Destination |Flight Id'
+  puts 'Ticket Number | Departure | Destination'
   tickets.each do | ticket |
-    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination+' '+ticket.flight.fl_id
+    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination
   end
 
   while(@@old_flight_price==nil)
      @@old_flight_price= enter_ticket_number(tickets)
   end
 
-  puts 'Please press Enter to search for new flights'
-  STDIN.gets.chomp
-
+  puts '------------------Feel free to search for flights---------------'
+  puts
 
 end
 

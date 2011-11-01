@@ -7,7 +7,7 @@ class Payment
 
   def credit_card_details
 
-     puts 'Enter your Credit Card Number : '
+     puts 'Enter your Credit Card Number: '
      @credit_card_no =  gets.chomp
      valid = validate_credit_card
      if(!valid)
@@ -18,7 +18,7 @@ class Payment
 
 
   def payment_amount flight
-      puts "The price for this ticket is: " +flight.fl_price.to_s
+      puts "The price for this ticket is " +flight.fl_price.to_s+"GBP"
       puts 'Enter your Payment amount'
        @amount = gets.chomp
       valid =  validate_payment_amount flight
