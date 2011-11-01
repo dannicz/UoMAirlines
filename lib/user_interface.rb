@@ -6,7 +6,6 @@ require "../lib/search_email"
 require "../lib/ticket_manager"
 require "../lib/ticket_cancellation"
 
-
 class UserInterface
 
   def initialize
@@ -145,7 +144,7 @@ end
        puts 'Please enter the ticket number to cancel'
        ticket_number=STDIN.gets.chomp
        ticket_cancel.delete_ticket ticket_number
-       puts 'Your ticket has been cancelled'
+       puts 'Your ticket has been cancelled.An e-mail has been sent for further information.'
      else
         puts 'We are sorry! You need to login/Register to use our services'
         puts ''
@@ -168,10 +167,6 @@ end
         key = STDIN.gets.chomp
         execute_user_interface
      end
-
-
-
-
   end
 
   def print_my_tickets
