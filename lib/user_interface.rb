@@ -169,6 +169,7 @@ end
      end
 
     puts 'Please select the flight you would like to update '
+
   end
 
   def print_my_tickets
