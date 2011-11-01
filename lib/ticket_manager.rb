@@ -3,16 +3,23 @@ require '../lib/user_interface'
 
 class TicketManager
 
-    def initialize
-    @@old_ticket_number= nil
-    @@old_flight_price = nil
-    end
+  @@old_ticket_number= nil
+  @@old_flight_price = nil
+
+  def initialize
+
+  end
 
   def self .old_ticket_number
     @@old_ticket_number
   end
     def self .old_flight_price
     @@old_flight_price
+    end
+
+  def self .reinitialize
+    @@old_ticket_number=nil
+    @@old_flight_price=nil
     end
 
   def add_details_to_ticket(ticket_found)
@@ -35,24 +42,22 @@ class TicketManager
           end
       end
 
-
-
      return ticket_found
 
   end
 
-def print_tickets_from_user email
+  def print_tickets_from_user email
 
-  tickets = find_tickets_from_user email
+    tickets = find_tickets_from_user email
 
-  puts 'Ticket Number | Departure | Destination '
-  tickets.each do | ticket |
-    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination
+    puts 'Ticket Number | Departure | Destination '
+    tickets.each do | ticket |
+      puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination
+    end
+
   end
 
-end
-
-    def enter_ticket_number(tickets)
+  def enter_ticket_number(tickets)
 
       old_payment=nil
       puts 'Please enter the ticket number you would like to update '
@@ -65,47 +70,43 @@ end
         end
       end
       old_payment
+   end
+
+  def update_tickets email
+
+    tickets = find_tickets_from_user email
+
+    puts 'Ticket Number | Departure | Destination'
+    tickets.each do | ticket |
+      puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination
     end
 
-    def update_tickets email
+    while(@@old_flight_price==nil)
+       @@old_flight_price= enter_ticket_number(tickets)
+    end
 
-  tickets = find_tickets_from_user email
+    puts '------------------Feel free to search for flights---------------'
+    puts
 
-  puts 'Ticket Number | Departure | Destination |Flight Id'
-  tickets.each do | ticket |
-    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination+' '+ticket.flight.fl_id
   end
 
-  while(@@old_flight_price==nil)
-     @@old_flight_price= enter_ticket_number(tickets)
+
+  def  find_tickets_from_user email
+
+      tickets = all_tickets
+
+      tickets_found = []
+
+      tickets.each do | ticket |
+          if ticket.us_email == email
+             add_details_to_ticket(ticket)
+             tickets_found.push ticket
+          end
+      end
+
+      return tickets_found
+
   end
-
-  puts 'Please press Enter to search for new flights'
-  STDIN.gets.chomp
-
-
-end
-
-
-def  find_tickets_from_user email
-
-        tickets = all_tickets
-
-        tickets_found = []
-
-        tickets.each do | ticket |
-            if ticket.us_email == email
-               add_details_to_ticket(ticket)
-               tickets_found.push ticket
-            end
-        end
-
-       return tickets_found
-
-end
-
-
-
 
   def find_flight fl_id
 
@@ -126,7 +127,6 @@ end
   def find_user email
 
       users = all_users
-
       user_found = nil
 
       users.each do |user|
@@ -159,9 +159,6 @@ end
     print_ticket ticket_number
 
   end
-
-
-
 
   def print_ticket ticket_number
 

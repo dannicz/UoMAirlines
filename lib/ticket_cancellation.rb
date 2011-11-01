@@ -34,10 +34,9 @@ class TicketCancellation
 
     ticketsArray.each do |ticket|
       i = i+1
+
       if(ticket.ticket_number.to_i == ticket_number.to_i)
 
-        #manager= TicketManager.new
-        #manager.add_details_to_ticket ticket
         add_to_cancellation_history ticket.ticket_number,ticket.user.email,ticket.payment
 
         send=Send_email.new
@@ -49,6 +48,7 @@ class TicketCancellation
         send.send_email(ticket.user.email,ticket.user.f_name,message)
 
         ticket.ticket_number = nil
+
       end
     end
     update_file(ticketsArray)

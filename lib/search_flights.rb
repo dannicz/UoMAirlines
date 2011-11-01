@@ -42,16 +42,17 @@ class SearchFlights
 
     if (TicketManager.old_flight_price.to_i < flight.fl_price.to_i)
       flight.fl_price = flight.fl_price.to_i - TicketManager.old_flight_price.to_i
-      puts "You have to pay the difference of the ticket prices which is: "+flight.fl_price.to_s
+      puts "You have to pay the difference of the ticket prices which is "+flight.fl_price.to_s+" GBP"
       payment = Payment.new
       payment.payment_gateway flight
     else
       diff_amount = TicketManager.old_flight_price.to_i - flight.fl_price.to_i
-      puts "Your ticket has been booked and the difference amount £"+diff_amount.to_s+" "+ "shall be credited to your account automatically"
+      puts "Your ticket has been booked (see e-mail for further information) and the difference amount "+diff_amount.to_s+" GBP"+ " shall be credited to your account automatically"
     end
 
     ticket_cancellation = TicketCancellation.new
     ticket_cancellation.delete_ticket TicketManager.old_ticket_number
+    TicketManager.reinitialize
   end
 
 
@@ -74,7 +75,6 @@ class SearchFlights
             flight = selectDesiredFlight foundFlights
         end
         if(TicketManager.old_ticket_number != nil)
-          #puts 'price '+TicketManager.old_flight_price.to_s + ' '+ flight.fl_price.to_s
           change_ticket(flight)
         else
         payment = Payment.new
