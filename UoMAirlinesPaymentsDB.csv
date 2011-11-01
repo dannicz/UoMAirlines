@@ -1,4 +1,4 @@
-ticket_number,us_Email,fl_Id,fl_Departure,fl_Destination,payment
+"ticket_number,us_Email",fl_Id,fl_Departure,fl_Destination,payment
 100,rahul@gmail.com,101,Manchester,Dubai,350
 2343,r@g.c,1,Manchester,Dubai,350
 3123,r@g.c,1,Manchester,Dubai,350

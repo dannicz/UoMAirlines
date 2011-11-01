@@ -147,7 +147,11 @@ end
 
   def cancel_reservation
      if(@@user_name != nil)
+       manager= TicketManager.new
+       manager.print_tickets_from_user @@user_name
+
        ticket_cancel= TicketCancellation.new
+       puts''
        puts 'Please enter the ticket number to cancel'
        ticket_number=STDIN.gets.chomp
        ticket_cancel.delete_ticket ticket_number
