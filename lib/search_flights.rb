@@ -5,8 +5,17 @@ require '../lib/csv_reader'
 require '../lib/payment'
 require 'search_flights'
 require '../lib/user_interface'
+require '../lib/ticket_manager'
 
 class SearchFlights
+
+  def initialize
+     @@new_flight_price = nil
+  end
+
+  def self.new_flight_price
+    @@new_flight_price
+  end
 
   def search_for_flights
     load_database("../UoMAirlinesFlightsDB.csv")
@@ -46,17 +55,19 @@ class SearchFlights
         while flight == nil
             flight = selectDesiredFlight foundFlights
         end
-        if(@@old_flight_id != nil)
-          if(@@old_flight_price < @fl_price)
-            @fl_Price =   @@old_flight_price - @fl_price
+        if(TicketManager.old_flight_id != nil)
+          #puts 'price '+TicketManager.old_flight_price.to_s + ' '+ flight.fl_price.to_s
+          if(TicketManager.old_flight_price.to_i < flight.fl_price.to_i)
+            flight.fl_price =  flight.fl_price.to_i - TicketManager.old_flight_price.to_i
             payment = Payment.new
             payment.payment_gateway flight
           else
-
+            diff_amount =  TicketManager.old_flight_price.to_i - flight.fl_price.to_i
+            puts "Your ticket has been booked and the difference amount £"+diff_amount.to_s+" "+ "shall be credited to your account automatically"
             end
         else
-         payment = Payment.new
-         payment.payment_gateway flight
+        payment = Payment.new
+        payment.payment_gateway flight
          end
 
       else

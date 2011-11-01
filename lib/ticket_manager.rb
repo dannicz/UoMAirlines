@@ -3,6 +3,17 @@ require '../lib/user_interface'
 
 class TicketManager
 
+    def initialize
+    @@old_flight_id = nil
+    @@old_flight_price = nil
+    end
+
+  def self.old_flight_id
+    @@old_flight_id
+  end
+    def self .old_flight_price
+    @@old_flight_price
+    end
 
   def add_details_to_ticket(ticket_found)
 
