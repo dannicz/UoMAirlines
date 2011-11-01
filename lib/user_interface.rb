@@ -145,39 +145,63 @@ end
 
   end
 
+  def enter_ticket_number_for_cancellation
+    puts 'Please enter the ticket number to cancel'
+    ticket_number=STDIN.gets.chomp
+    if(is_number?(ticket_number) && ticket_number.length != 0 )
+       ticket_number
+    else
+      enter_ticket_number_for_cancellation
+    end
+  end
+
+  def is_number?(i)
+  true if Integer(i) rescue false
+end
+
   def cancel_reservation
      if(@@user_name != nil)
        manager= TicketManager.new
-       manager.print_tickets_from_user @@user_name
+       number_of_tickets= manager.print_tickets_from_user @@user_name
 
-       ticket_cancel= TicketCancellation.new
-       puts''
-       puts 'Please enter the ticket number to cancel'
-       ticket_number=STDIN.gets.chomp
-       ticket_cancel.delete_ticket ticket_number, false
-       puts 'Your ticket has been cancelled.An e-mail has been sent for further information.'
-     else
-        puts 'We are sorry! You need to login/Register to use our services'
-        puts ''
+       if(number_of_tickets>0)
+           ticket_cancel= TicketCancellation.new
+           puts''
+           ticket_number = enter_ticket_number_for_cancellation
+           while(ticket_cancel.delete_ticket(ticket_number, false) == nil)
+               ticket_number = enter_ticket_number_for_cancellation
+           end
 
-     end
-      puts "Press 'Enter' to continue..."
-      key = STDIN.gets.chomp
-     execute_user_interface
+           puts 'Your ticket has been cancelled.An e-mail has been sent for further information.'
+        else
+             puts 'You have no tickets booked'
+        end
+          puts "Press 'Enter' to continue..."
+          key = STDIN.gets.chomp
+          execute_user_interface
+       else
+            puts 'We are sorry! You need to login/Register to use our services'
+            puts ''
+       end
+       puts "Press 'Enter' to continue..."
+       key = STDIN.gets.chomp
+       execute_user_interface
   end
 
   def update
      if(@@user_name != nil)
        manager= TicketManager.new
-       manager.update_tickets @@user_name
-       search
-     else
+       number_of_tickets= manager.update_tickets @@user_name
+       if(number_of_tickets>0)
+          search
+       end
+       else
         puts 'We are sorry! You need to login/Register to use our services'
         puts ''
+      end
         puts "Press 'Enter' to continue..."
         key = STDIN.gets.chomp
         execute_user_interface
-     end
   end
 
   def print_my_tickets

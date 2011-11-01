@@ -29,15 +29,20 @@ class TicketCancellation
 
   def delete_ticket ticket_number, changed
 
+
+
     ticketsArray  = read_tickets
 
     i = 0
+    ticket_found=nil
 
     ticketsArray.each do |ticket|
       i = i+1
 
+
       if(ticket.ticket_number.to_i == ticket_number.to_i)
 
+        ticket_found=ticket
         add_to_cancellation_history ticket.ticket_number,ticket.user.email,ticket.payment
 
         send=Send_email.new
@@ -58,6 +63,8 @@ class TicketCancellation
       end
     end
     update_file(ticketsArray)
+
+    ticket_found
   end
 
 
