@@ -200,12 +200,16 @@ end
     execute_user_interface
   end
 
+  def search_gateway
+    manager = TicketManager.new
+    search
+  end
+
   def search
       if(@@user_name != nil)
         puts "Please enter the flight details"
         puts
         searcher = SearchFlights.new
-        manager = TicketManager.new
         searcher.search_for_flights
         puts "Press 'Enter' to continue..."
         key = STDIN.gets.chomp
