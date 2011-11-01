@@ -114,7 +114,7 @@ end
       flight_found = nil
 
       flights.each do |flight|
-          if flight.fl_id == fl_id
+          if flight.fl_id.to_i == fl_id.to_i
             flight_found = flight
           end
       end
@@ -130,7 +130,7 @@ end
       user_found = nil
 
       users.each do |user|
-          if user.email == email
+          if user.email.to_s == email.to_s
             user_found = user
           end
       end

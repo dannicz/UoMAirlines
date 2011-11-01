@@ -36,8 +36,8 @@ class TicketCancellation
       i = i+1
       if(ticket.ticket_number.to_i == ticket_number.to_i)
 
-        manager= TicketManager.new
-        manager.add_details_to_ticket ticket
+        #manager= TicketManager.new
+        #manager.add_details_to_ticket ticket
         add_to_cancellation_history ticket.ticket_number,ticket.user.email,ticket.payment
 
         send=Send_email.new
