@@ -64,7 +64,7 @@ class SearchFlights
           else
             diff_amount =  TicketManager.old_flight_price.to_i - flight.fl_price.to_i
             puts "Your ticket has been booked and the difference amount £"+diff_amount.to_s+" "+ "shall be credited to your account automatically"
-            end
+          end
         else
         payment = Payment.new
         payment.payment_gateway flight
