@@ -4,12 +4,12 @@ require '../lib/user_interface'
 class TicketManager
 
     def initialize
-    @@old_flight_id = nil
+    @@old_ticket_number= nil
     @@old_flight_price = nil
     end
 
-  def self .old_flight_id
-    @@old_flight_id
+  def self .old_ticket_number
+    @@old_ticket_number
   end
     def self .old_flight_price
     @@old_flight_price
@@ -52,21 +52,32 @@ def print_tickets_from_user email
 
 end
 
-def update_tickets email
+    def enter_ticket_number(tickets)
+
+      old_payment=nil
+      puts 'Please enter the ticket number you would like to update '
+
+      @@old_ticket_number=STDIN.gets.chomp
+      tickets.each do |ticket|
+        if (ticket.ticket_number == @@old_ticket_number)
+          old_payment = ticket.payment
+          break
+        end
+      end
+      old_payment
+    end
+
+    def update_tickets email
 
   tickets = find_tickets_from_user email
 
   puts 'Ticket Number | Departure | Destination |Flight Id'
   tickets.each do | ticket |
-    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination+''+ticket.flight.fl_id
+    puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination+' '+ticket.flight.fl_id
   end
-  puts 'Please select the flight you would like to update '
-  @@old_flight_id=STDIN.gets.chomp
-  tickets.each do | ticket |
-    if(ticket.flight.fl_id == @@old_flight_id)
-      @@old_flight_price =  ticket.payment
-      break
-    end
+
+  while(@@old_flight_price==nil)
+     @@old_flight_price= enter_ticket_number(tickets)
   end
 
   puts 'Please press Enter to search for new flights'

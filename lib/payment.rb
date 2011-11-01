@@ -10,7 +10,7 @@ class Payment
      puts 'Enter your Credit Card Number : '
      @credit_card_no =  gets.chomp
      valid = validate_credit_card
-     if(valid == 0)
+     if(!valid)
       puts 'Invalid Credit Card Number'
       credit_card_details
      end
@@ -18,10 +18,11 @@ class Payment
 
 
   def payment_amount flight
+      puts "The price for this ticket is: " +flight.fl_price.to_s
       puts 'Enter your Payment amount'
        @amount = gets.chomp
       valid =  validate_payment_amount flight
-      if(valid == 0)
+      if(!valid )
         puts 'Invalid Amount Entered'
         payment_amount flight
       end
@@ -39,7 +40,8 @@ end
 
 
   def validate_payment_amount  flight
-         is_number?(@amount) && @amount == flight.fl_price
+    is_number?(@amount) && @amount.to_i == flight.fl_price
+
   end
 
   def write_payment_details flight

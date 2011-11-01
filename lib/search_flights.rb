@@ -38,6 +38,24 @@ class SearchFlights
     end
   end
 
+  def change_ticket(flight)
+
+    if (TicketManager.old_flight_price.to_i < flight.fl_price.to_i)
+      flight.fl_price = flight.fl_price.to_i - TicketManager.old_flight_price.to_i
+      puts "You have to pay the difference of the ticket prices which is: "+flight.fl_price.to_s
+      payment = Payment.new
+      payment.payment_gateway flight
+    else
+      diff_amount = TicketManager.old_flight_price.to_i - flight.fl_price.to_i
+      puts "Your ticket has been booked and the difference amount £"+diff_amount.to_s+" "+ "shall be credited to your account automatically"
+    end
+
+    ticket_cancellation = TicketCancellation.new
+    ticket_cancellation.delete_ticket TicketManager.old_ticket_number
+  end
+
+
+
   def search_for_departurePlace
     print "Enter Departure Town: "
     departure = gets.chomp
@@ -55,16 +73,9 @@ class SearchFlights
         while flight == nil
             flight = selectDesiredFlight foundFlights
         end
-        if(TicketManager.old_flight_id != nil)
+        if(TicketManager.old_ticket_number != nil)
           #puts 'price '+TicketManager.old_flight_price.to_s + ' '+ flight.fl_price.to_s
-          if(TicketManager.old_flight_price.to_i < flight.fl_price.to_i)
-            flight.fl_price =  flight.fl_price.to_i - TicketManager.old_flight_price.to_i
-            payment = Payment.new
-            payment.payment_gateway flight
-          else
-            diff_amount =  TicketManager.old_flight_price.to_i - flight.fl_price.to_i
-            puts "Your ticket has been booked and the difference amount £"+diff_amount.to_s+" "+ "shall be credited to your account automatically"
-            end
+          change_ticket(flight)
         else
         payment = Payment.new
         payment.payment_gateway flight
