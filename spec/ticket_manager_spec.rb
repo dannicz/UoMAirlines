@@ -1,9 +1,23 @@
 require "rspec"
 require '../lib/ticket_manager'
 require '../lib/ticket'
+require "../lib/user_writer"
 
 describe TicketManager do
 
+  before do
+    subject.create_tickets_db_unless_exists
+    subject.create_flights_db_unless_exists
+    user_writer = UserWriter.new
+    user_writer.create_users_db_unless_exists
+  end
+
+  it "it should create and save a ticket in the CSV file" do
+    flight= Flight.new 1,'Manchester','Dubai','12:00','18:00',350
+    ticket= subject.create_new_ticket flight,'admin@hotmail.com',500
+    subject.save_ticket ticket
+
+  end
 
   it "it should find a ticket" do
 
@@ -39,17 +53,8 @@ describe TicketManager do
 
   end
 
-  it "should print the details of the ticket" do
 
-    ticket_number = 2
-    subject.print_ticket ticket_number
-
-  end
-
-  it "should print the tickets of a user" do
-     user_id= 'c@d.com'
-     subject.print_tickets_from_user user_id
-  end
 
 
 end
+

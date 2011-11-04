@@ -1,3 +1,5 @@
+require 'faster_csv'
+
 class TicketNumberCreator
     def search_for_tickets
     load_database("../UoMAirlinesPaymentsDB.csv")

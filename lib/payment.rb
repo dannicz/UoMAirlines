@@ -42,31 +42,41 @@ end
 
   end
 
+  def send_email_confirmation(flight, refund, send, ticket_number, user)
+    price = @amount
+    time = Time.now()
+    currentTime = "#{time.day}/#{time.month}/#{time.year} at #{time.hour}:#{time.min}:#{time.sec}"
+    if (refund)
+      message = "Ticket successfully changed!\n\nTicket number: #{ticket_number.to_s}\nSurname: #{user.l_name}\nFirstname: #{user.f_name}\nFlight ID: #{flight.fl_id}\nDeparture Town: #{flight.fl_departure}\nDestination Town: #{flight.fl_destination}\nDeparture Time: #{flight.fl_departure_time}\nArrival Time: #{flight.fl_arrival_time.to_s}\nThe amount of #{price.to_s} £ will be refunded to your account\n\nMessage created on : #{currentTime}\n"
+    else
+      message = "Ticket successfully booked!\n\nTicket number: #{ticket_number.to_s}\nSurname: #{user.l_name}\nFirstname: #{user.f_name}\nFlight ID: #{flight.fl_id}\nDeparture Town: #{flight.fl_departure}\nDestination Town: #{flight.fl_destination}\nDeparture Time: #{flight.fl_departure_time}\nArrival Time: #{flight.fl_arrival_time.to_s}\nPrice: #{price.to_s} £\n\nMessage created on : #{currentTime}\n"
+    end
+    send.send_email(UserInterface.user_name, user.f_name, message)
+  end
+
+
+
+
   def write_payment_details flight, refund
-      creator = TicketNumberCreator.new
-      ticket_number = creator.create_ticket_number
-      send=Send_email.new
+
       ticket_mngr = TicketManager.new
       user = ticket_mngr.find_user(UserInterface.user_name)
 
-      FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "a") do |csv|
-      csv << [ticket_number,UserInterface.user_name,flight.fl_id,flight.fl_departure,flight.fl_destination,@amount]
-      end
+      new_ticket = ticket_mngr.create_new_ticket(flight, UserInterface.user_name,@amount)
+      ticket_number = new_ticket.ticket_number
+
+      ticket_mngr.save_ticket new_ticket
+
       puts ''
       puts '                        Payment Successful !!!'
       puts "Congratulations! Your ticket has been booked from "+flight.fl_departure+" to "+flight.fl_destination
       puts ''
       puts 'A copy of your ticket has been mailed to your e-mail address'
-      price = @amount
-      time = Time.now()
-      currentTime = "#{time.day}/#{time.month}/#{time.year} at #{time.hour}:#{time.min}:#{time.sec}"
-      if(refund)
-        message = "Ticket successfully changed!\n\nTicket number: #{ticket_number.to_s}\nSurname: #{user.l_name}\nFirstname: #{user.f_name}\nFlight ID: #{flight.fl_id}\nDeparture Town: #{flight.fl_departure}\nDestination Town: #{flight.fl_destination}\nDeparture Time: #{flight.fl_departure_time}\nArrival Time: #{flight.fl_arrival_time.to_s}\nThe amount of #{price.to_s} £ will be refunded to your account\n\nMessage created on : #{currentTime}\n"
-      else
-        message = "Ticket successfully booked!\n\nTicket number: #{ticket_number.to_s}\nSurname: #{user.l_name}\nFirstname: #{user.f_name}\nFlight ID: #{flight.fl_id}\nDeparture Town: #{flight.fl_departure}\nDestination Town: #{flight.fl_destination}\nDeparture Time: #{flight.fl_departure_time}\nArrival Time: #{flight.fl_arrival_time.to_s}\nPrice: #{price.to_s} £\n\nMessage created on : #{currentTime}\n"
-      end
-      send.send_email(UserInterface.user_name,user.f_name,message)
       puts ''
+
+      sender=Send_email.new
+      send_email_confirmation(flight, refund, sender, ticket_number, user)
+
   end
 
   def payment_gateway flight

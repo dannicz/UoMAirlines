@@ -1,5 +1,6 @@
 require '../lib/csv_reader'
 require '../lib/user_interface'
+require 'faster_csv'
 
 class TicketManager
 
@@ -197,5 +198,41 @@ class TicketManager
      users
 
   end
+
+  def create_new_ticket(flight,username,amount)
+    creator = TicketNumberCreator.new
+    ticket_number = creator.create_ticket_number
+
+    new_ticket= Ticket.new ticket_number,username, flight.fl_id, flight.fl_departure, flight.fl_destination,amount
+    return new_ticket
+  end
+
+  def save_ticket ticket
+
+      FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "a") do |csv|
+      csv << [ticket.ticket_number,ticket.user.email,ticket.flight.fl_id,ticket.flight.fl_departure,ticket.flight.fl_destination,ticket.payment   ]
+      end
+  end
+
+  def create_tickets_db_unless_exists
+    unless File.exists?("../UoMAirlinesPaymentsDB.csv")
+      FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "w") do |csv|
+        csv << ["ticket_number","us_Email","fl_Id","fl_Departure","fl_Destination","payment"]
+      end
+    end
+  end
+
+
+  def create_flights_db_unless_exists
+
+    unless File.exists?("../UoMAirlinesFlightsDB.csv")
+      FasterCSV.open("../UoMAirlinesFlightsDB.csv", "w") do |csv|
+        csv << ["fl_Id","fl_Departure","fl_Destination","fl_DepartureTime","fl_ArrivalTime","fl_Price"]
+        csv << ["1,Manchester","Dubai","12:00","18:00","350"]
+      end
+    end
+  end
+
+
 
 end

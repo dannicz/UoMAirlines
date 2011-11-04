@@ -16,10 +16,14 @@ class UserWriter
     unless File.exists?("../UoMAirlinesUsersDB.csv")
       FasterCSV.open("../UoMAirlinesUsersDB.csv", "w") do |csv|
         csv << ["us_FirstName","us_SurName","us_Password","us_Email","us_Address","us_Type"]
+        csv << ["admin", "admin", "12345678", "admin@hotmail.com","2 Beta Street", "admin"]
+
       end
     end
+
 
   end
 
 end
+
 
