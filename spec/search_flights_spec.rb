@@ -1,14 +1,17 @@
 require "rspec"
 require "../lib/search_flights"
 
-describe "My behaviour" do
+describe SearchFlights do
+
+  before do
+
+  end
 
   it "should find flights" do
 
-    finder = SearchFlights.new
     departure = "Manchester"
     destination = "Dubai"
-    foundFlights = finder.findFlights departure,destination
+    foundFlights = subject.findFlights departure,destination
 
     foundFlights.size.should > 0
   end
