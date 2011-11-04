@@ -42,13 +42,12 @@ end
 
   end
 
-  def write_payment_details flight
+  def write_payment_details flight, refund
       creator = TicketNumberCreator.new
       ticket_number = creator.create_ticket_number
       send=Send_email.new
       ticket_mngr = TicketManager.new
       user = ticket_mngr.find_user(UserInterface.user_name)
-      user_first_name = user.f_name
 
       FasterCSV.open("../UoMAirlinesPaymentsDB.csv", "a") do |csv|
       csv << [ticket_number,UserInterface.user_name,flight.fl_id,flight.fl_departure,flight.fl_destination,@amount]
@@ -61,8 +60,12 @@ end
       price = @amount
       time = Time.now()
       currentTime = "#{time.day}/#{time.month}/#{time.year} at #{time.hour}:#{time.min}:#{time.sec}"
-      message = "Ticket successfully booked!\n\nTicket number: #{ticket_number.to_s}\nSurname: #{user.l_name}\nFirstname: #{user.f_name}\nFlight ID: #{flight.fl_id}\nDeparture Town: #{flight.fl_departure}\nDestination Town: #{flight.fl_destination}\nDeparture Time: #{flight.fl_departure_time}\nArrival Time: #{flight.fl_arrival_time.to_s}\nPrice: #{price.to_s} £\n\nMessage created on : #{currentTime}\n"
-      send.send_email(UserInterface.user_name,user_first_name,message)
+      if(refund)
+        message = "Ticket successfully changed!\n\nTicket number: #{ticket_number.to_s}\nSurname: #{user.l_name}\nFirstname: #{user.f_name}\nFlight ID: #{flight.fl_id}\nDeparture Town: #{flight.fl_departure}\nDestination Town: #{flight.fl_destination}\nDeparture Time: #{flight.fl_departure_time}\nArrival Time: #{flight.fl_arrival_time.to_s}\nThe amount of #{price.to_s} £ will be refunded to your account\n\nMessage created on : #{currentTime}\n"
+      else
+        message = "Ticket successfully booked!\n\nTicket number: #{ticket_number.to_s}\nSurname: #{user.l_name}\nFirstname: #{user.f_name}\nFlight ID: #{flight.fl_id}\nDeparture Town: #{flight.fl_departure}\nDestination Town: #{flight.fl_destination}\nDeparture Time: #{flight.fl_departure_time}\nArrival Time: #{flight.fl_arrival_time.to_s}\nPrice: #{price.to_s} £\n\nMessage created on : #{currentTime}\n"
+      end
+      send.send_email(UserInterface.user_name,user.f_name,message)
       puts ''
   end
 
@@ -72,7 +75,7 @@ end
     puts ''
     credit_card_details
     payment_amount flight
-    write_payment_details flight
+    write_payment_details flight, false
   end
 
 end

@@ -55,6 +55,7 @@ class TicketManager
       puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination
     end
 
+    tickets.size
   end
 
   def enter_ticket_number(tickets)
@@ -81,12 +82,16 @@ class TicketManager
       puts ticket.ticket_number.to_s + ' '+ticket.fl_departure + ' '+ticket.fl_destination
     end
 
-    while(@@old_flight_price==nil)
-       @@old_flight_price= enter_ticket_number(tickets)
-    end
-
-    puts '------------------Feel free to search for flights---------------'
-    puts
+    if(tickets.size>0)
+        while(@@old_flight_price==nil)
+           @@old_flight_price= enter_ticket_number(tickets)
+        end
+        puts '------------------Feel free to search for flights---------------'
+        puts
+    else
+      puts 'You have no tickets booked'
+      end
+     tickets.size
 
   end
 
