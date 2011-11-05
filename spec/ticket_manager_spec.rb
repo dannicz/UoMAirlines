@@ -15,7 +15,9 @@ describe TicketManager do
   it "it should create and save a ticket in the CSV file" do
     flight= Flight.new 1,'Manchester','Dubai','12:00','18:00',350
     ticket= subject.create_new_ticket flight,'admin@hotmail.com',500
-    subject.save_ticket ticket
+    result=subject.save_ticket ticket
+
+    result.should be_true
 
   end
 
